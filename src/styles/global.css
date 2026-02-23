@@ -1,0 +1,307 @@
+/* ================================================================
+   APEX QUANTS LLP — Global Stylesheet
+   Design System: "Precision Dark — Bloomberg Terminal Meets Modern SaaS"
+   ================================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brand CSS Custom Properties ──────────────────────────────── */
+:root {
+  --bg-primary:    #000000;
+  --bg-card:       #0D0D0D;
+  --bg-elevated:   #1A1A1A;
+  --accent:        #A8FF00;
+  --accent-hover:  #C8FF40;
+  --text-primary:  #FFFFFF;
+  --text-muted:    #CCCCCC;
+  --border:        #2A2A2A;
+  --divider-glow:  rgba(168, 255, 0, 0.15);
+
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+/* ── Base Reset ───────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ── Typography Base ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* ── Scrollbar Styling ────────────────────────────────────────── */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-card);
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-card);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* ── Selection ────────────────────────────────────────────────── */
+::selection {
+  background: rgba(168, 255, 0, 0.25);
+  color: #fff;
+}
+
+/* ── Utility Classes ──────────────────────────────────────────── */
+.brand-name {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: var(--font-body);
+  letter-spacing: 0.06em;
+}
+
+.font-mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* ── Hero Animation Keyframes ─────────────────────────────────── */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes letterSpacingExpand {
+  from {
+    opacity: 0;
+    letter-spacing: 1em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.15em;
+  }
+}
+
+@keyframes drawLineRight {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes statFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Hero Animation Classes ───────────────────────────────────── */
+.anim-nav {
+  opacity: 0;
+  animation: slideDown 0.6s ease-out 0.1s both;
+}
+
+.anim-eyebrow {
+  opacity: 0;
+  animation: letterSpacingExpand 0.7s ease-out 0.4s both;
+}
+
+.anim-h1-line-1 {
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out 0.6s both;
+}
+
+.anim-h1-line-2 {
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out 0.8s both;
+}
+
+.anim-h1-line-3 {
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out 1.0s both;
+}
+
+.anim-subheading {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 1.2s both;
+}
+
+.anim-cta {
+  opacity: 0;
+  animation: scaleIn 0.5s ease-out 1.4s both;
+}
+
+.anim-divider {
+  animation: drawLineRight 0.8s ease-out 1.6s both;
+}
+
+.anim-stat {
+  opacity: 0;
+}
+
+.anim-stat.visible {
+  animation: statFadeUp 0.6s ease-out both;
+}
+
+/* ── Dot Grid Pattern ─────────────────────────────────────────── */
+.dot-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Prefers Reduced Motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .anim-nav,
+  .anim-eyebrow,
+  .anim-h1-line-1,
+  .anim-h1-line-2,
+  .anim-h1-line-3,
+  .anim-subheading,
+  .anim-cta,
+  .anim-stat {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── Page Transition Fade ─────────────────────────────────────── */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body {
+  animation: pageFadeIn 0.4s ease-out both;
+}

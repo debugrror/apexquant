@@ -1,0 +1,431 @@
+---
+import BrandDivider from "./ui/BrandDivider.astro";
+
+const services = [
+    {
+        name: "Custom Application Development",
+        description:
+            "Bespoke software engineered to exact specifications across Web, Mobile, and Desktop. Every system we architect is designed for long-term scalability and maintainability — not just initial delivery.",
+        icon: "code",
+    },
+    {
+        name: "SaaS & Multi-Tenant Architecture",
+        description:
+            "We design Software-as-a-Service platforms capable of serving thousands of independent organisations on a single, secure, high-performance infrastructure — with strict data isolation and enterprise-grade access controls.",
+        icon: "layers",
+    },
+    {
+        name: "API & Microservices Engineering",
+        description:
+            "Modular, fault-tolerant system architectures where independent services communicate via well-defined APIs. We engineer for resilience: systems that degrade gracefully and recover automatically.",
+        icon: "git-branch",
+    },
+    {
+        name: "Cloud & DevOps Automation",
+        description:
+            "End-to-end deployment and scaling across AWS, GCP, and Azure. We implement CI/CD pipelines, infrastructure-as-code, and automated monitoring — so your releases are fast, repeatable, and safe.",
+        icon: "cloud",
+    },
+    {
+        name: "AI & Machine Learning Systems",
+        description:
+            "We build production-grade AI agents, Large Language Model (LLM) integrations, and custom ML pipelines that go beyond prototypes into robust, observable systems operating at scale in live environments.",
+        icon: "cpu",
+    },
+    {
+        name: "Data & Enterprise Engineering",
+        description:
+            "ETL pipeline architecture, Business Intelligence dashboard engineering, and legacy ERP/CRM modernisation. We transform raw data into auditable, queryable, actionable intelligence.",
+        icon: "database",
+    },
+    {
+        name: "Cybersecurity & Compliance Engineering",
+        description:
+            "Security is not a feature — it is an architectural decision. We embed security-first principles into every system layer: threat modelling, penetration testing readiness, access controls, and regulatory compliance frameworks.",
+        icon: "shield",
+    },
+];
+---
+
+<section class="tech-services" id="services">
+    <div class="tech-services-inner">
+        <!-- Decorative section number -->
+        <span class="section-number" aria-hidden="true">02</span>
+
+        <!-- Header block -->
+        <div class="tech-services-header anim-tech-header">
+            <span class="font-mono-label" style="color: var(--accent);">
+                ◆&nbsp; CORE TECHNOLOGY
+            </span>
+
+            <h2 class="tech-services-headline">
+                Full-Stack Engineering for the Demands of Modern Finance
+            </h2>
+
+            <p class="tech-services-intro">
+                Our Core Technology practice delivers the foundational digital
+                infrastructure that powers scalable, secure, and intelligent
+                businesses — from custom application development to enterprise
+                AI systems and cloud-native DevOps.
+            </p>
+        </div>
+
+        <!-- Service cards grid -->
+        <div class="services-grid">
+            {
+                services.map((service, i) => (
+                    <article
+                        class="service-card anim-service-card"
+                        style={`animation-delay: ${0.1 * i}s;`}
+                    >
+                        <div class="service-icon" aria-hidden="true">
+                            {service.icon === "code" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg>
+                            )}
+                            {service.icon === "layers" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                    <polyline points="2 17 12 22 22 17" />
+                                    <polyline points="2 12 12 17 22 12" />
+                                </svg>
+                            )}
+                            {service.icon === "git-branch" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <line x1="6" y1="3" x2="6" y2="15" />
+                                    <circle cx="18" cy="6" r="3" />
+                                    <circle cx="6" cy="18" r="3" />
+                                    <path d="M18 9a9 9 0 0 1-9 9" />
+                                </svg>
+                            )}
+                            {service.icon === "cloud" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                                </svg>
+                            )}
+                            {service.icon === "cpu" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <rect
+                                        x="4"
+                                        y="4"
+                                        width="16"
+                                        height="16"
+                                        rx="2"
+                                        ry="2"
+                                    />
+                                    <rect x="9" y="9" width="6" height="6" />
+                                    <line x1="9" y1="1" x2="9" y2="4" />
+                                    <line x1="15" y1="1" x2="15" y2="4" />
+                                    <line x1="9" y1="20" x2="9" y2="23" />
+                                    <line x1="15" y1="20" x2="15" y2="23" />
+                                    <line x1="20" y1="9" x2="23" y2="9" />
+                                    <line x1="20" y1="14" x2="23" y2="14" />
+                                    <line x1="1" y1="9" x2="4" y2="9" />
+                                    <line x1="1" y1="14" x2="4" y2="14" />
+                                </svg>
+                            )}
+                            {service.icon === "database" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                                </svg>
+                            )}
+                            {service.icon === "shield" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                            )}
+                        </div>
+
+                        <h3 class="service-name">{service.name}</h3>
+                        <p class="service-description">{service.description}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- Brand divider -->
+    <BrandDivider />
+</section>
+
+<!-- Scroll-triggered staggered fade-up -->
+<script>
+    const techSection = document.getElementById("services");
+    if (techSection) {
+        const cards = techSection.querySelectorAll(".anim-service-card");
+        const header = techSection.querySelector(".anim-tech-header");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.1 },
+        );
+
+        if (header) observer.observe(header);
+        cards.forEach((card) => observer.observe(card));
+    }
+</script>
+
+<style>
+    .tech-services {
+        position: relative;
+        padding: 7rem 1.5rem 0;
+        background: var(--bg-primary);
+        overflow: hidden;
+    }
+
+    .tech-services-inner {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ── Decorative section number ──────────────────────────── */
+    .section-number {
+        position: absolute;
+        top: -1.5rem;
+        left: -0.5rem;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(6rem, 12vw, 10rem);
+        color: #1a1a1a;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+    }
+
+    /* ── Header block ───────────────────────────────────────── */
+    .tech-services-header {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        max-width: 720px;
+        margin-bottom: 3.5rem;
+    }
+
+    .tech-services-headline {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--text-primary);
+    }
+
+    .tech-services-intro {
+        color: var(--text-muted);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+        max-width: 640px;
+    }
+
+    /* ── Service Cards Grid ─────────────────────────────────── */
+    .services-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    /* Span the last card across remaining space when 7 cards in a 3-col grid */
+    .service-card:last-child {
+        grid-column: 2 / 3;
+    }
+
+    /* ── Individual card ────────────────────────────────────── */
+    .service-card {
+        background: var(--bg-card);
+        border: 1px solid var(--bg-elevated);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.875rem;
+        transition:
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+        border-radius: 0;
+    }
+
+    .service-card:hover {
+        border-color: var(--accent);
+        box-shadow:
+            0 0 20px rgba(168, 255, 0, 0.06),
+            0 0 40px rgba(168, 255, 0, 0.03);
+    }
+
+    /* ── Icon ────────────────────────────────────────────────── */
+    .service-icon {
+        color: var(--accent);
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+    }
+
+    /* ── Card text ──────────────────────────────────────────── */
+    .service-name {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.125rem;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: var(--accent);
+    }
+
+    .service-description {
+        color: var(--text-muted);
+        font-size: 0.9375rem;
+        line-height: 1.65;
+    }
+
+    /* ── Scroll animations ──────────────────────────────────── */
+    .anim-tech-header {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 0.7s ease-out,
+            transform 0.7s ease-out;
+    }
+
+    .anim-tech-header.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .anim-service-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.5s ease-out,
+            transform 0.5s ease-out,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .anim-service-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .service-card:last-child {
+            grid-column: auto;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .tech-services {
+            padding: 5rem 1.25rem 0;
+        }
+
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .section-number {
+            font-size: clamp(4rem, 20vw, 6rem);
+            top: -1rem;
+            left: -0.25rem;
+        }
+    }
+
+    /* ── Prefers reduced motion ─────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+        .anim-tech-header,
+        .anim-service-card {
+            opacity: 1 !important;
+            transform: none !important;
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease !important;
+        }
+    }
+</style>

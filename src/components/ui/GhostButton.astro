@@ -1,0 +1,37 @@
+---
+interface Props {
+  href?: string;
+  class?: string;
+}
+
+const { href = "#", class: className = "" } = Astro.props;
+---
+
+<a href={href} class:list={["ghost-btn", className]}>
+  <slot />
+</a>
+
+<style>
+  .ghost-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    transition: all 0.2s ease;
+    text-align: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .ghost-btn:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+</style>

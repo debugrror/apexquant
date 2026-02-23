@@ -1,0 +1,52 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  suffix?: string;
+  prefix?: string;
+  index: number;
+}
+
+const { value, label, suffix = '', prefix = '', index } = Astro.props;
+---
+
+<div
+  class="stat-card anim-stat"
+  data-stat-value={value}
+  data-stat-suffix={suffix}
+  data-stat-prefix={prefix}
+  style={`animation-delay: ${0.15 * index}s;`}
+>
+  <span class="stat-value" aria-label={`${prefix}${value}${suffix}`}>
+    {prefix}<span class="counter">0</span>{suffix}
+  </span>
+  <span class="stat-label">{label}</span>
+</div>
+
+<style>
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--accent);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+</style>

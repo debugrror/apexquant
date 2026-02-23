@@ -1,0 +1,289 @@
+---
+import BrandDivider from "./ui/BrandDivider.astro";
+import StatCounter from "./ui/StatCounter.astro";
+import PrimaryButton from "./ui/PrimaryButton.astro";
+import GhostButton from "./ui/GhostButton.astro";
+
+const stats = [
+    { value: "50", suffix: "+", prefix: "", label: "Systems Architected" },
+    { value: "99.9", suffix: "%", prefix: "", label: "Uptime SLA Delivered" },
+    { value: "5", suffix: "ms", prefix: "<", label: "Latency Benchmarks Hit" },
+    {
+        value: "12",
+        suffix: "+",
+        prefix: "",
+        label: "Quant Strategies Deployed",
+    },
+];
+---
+
+<section class="hero" id="hero">
+    <!-- Background layers -->
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="dot-grid-overlay" aria-hidden="true"></div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <!-- Eyebrow -->
+        <div class="hero-eyebrow anim-eyebrow">
+            <span class="font-mono-label" style="color: var(--accent);">
+                ◆&nbsp; QUANTITATIVE ENGINEERING FIRM &nbsp;◆
+            </span>
+        </div>
+
+        <!-- H1 -->
+        <h1 class="hero-h1">
+            <span class="anim-h1-line-1">We Engineer the</span>
+            <span class="anim-h1-line-2">Systems That Power</span>
+            <span class="anim-h1-line-3">
+                Capital Markets<span class="accent-dot">.</span>
+            </span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="hero-subheading anim-subheading">
+            <span class="brand-name">APEX QUANTS LLP</span> architects high-performance
+            algorithmic trading infrastructure, AI-driven financial platforms, and
+            enterprise cloud systems — built for the precision demands of hedge funds,
+            fintech firms, and capital market operators.
+        </p>
+
+        <!-- CTA Row -->
+        <div class="hero-cta-row anim-cta">
+            <PrimaryButton href="#services"
+                >→ Explore Our Services</PrimaryButton
+            >
+            <GhostButton href="#contact">Schedule a Discovery Call</GhostButton>
+        </div>
+
+        <!-- Brand Divider -->
+        <BrandDivider />
+
+        <!-- Stat Strip -->
+        <div class="hero-stats" id="hero-stats">
+            {
+                stats.map((stat, i) => (
+                    <StatCounter
+                        value={stat.value}
+                        suffix={stat.suffix}
+                        prefix={stat.prefix}
+                        label={stat.label}
+                        index={i}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Stat Counter Animation (IntersectionObserver) -->
+<script>
+    function animateCounter(
+        el: HTMLElement,
+        target: number,
+        suffix: string,
+        prefix: string,
+    ) {
+        const counterSpan = el.querySelector(".counter") as HTMLElement;
+        if (!counterSpan) return;
+
+        const duration = 1800;
+        const startTime = performance.now();
+        const hasDecimal = target % 1 !== 0;
+
+        function update(currentTime: number) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+
+            counterSpan.textContent = hasDecimal
+                ? current.toFixed(1)
+                : Math.floor(current).toString();
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                counterSpan.textContent = hasDecimal
+                    ? target.toFixed(1)
+                    : target.toString();
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    const statsContainer = document.getElementById("hero-stats");
+    if (statsContainer) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const cards =
+                            statsContainer.querySelectorAll(".anim-stat");
+                        cards.forEach((card, i) => {
+                            const el = card as HTMLElement;
+                            const value = parseFloat(
+                                el.dataset.statValue || "0",
+                            );
+                            const suffix = el.dataset.statSuffix || "";
+                            const prefix = el.dataset.statPrefix || "";
+
+                            setTimeout(() => {
+                                el.classList.add("visible");
+                                animateCounter(el, value, suffix, prefix);
+                            }, i * 150);
+                        });
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.2 },
+        );
+        observer.observe(statsContainer);
+    }
+</script>
+
+<style>
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 8rem 1.5rem 4rem;
+        overflow: hidden;
+    }
+
+    /* CSS Background — radial gradient method */
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse 80% 60% at 60% 40%,
+                rgba(168, 255, 0, 0.04) 0%,
+                transparent 70%
+            ),
+            radial-gradient(
+                ellipse 50% 40% at 20% 70%,
+                rgba(168, 255, 0, 0.03) 0%,
+                transparent 60%
+            ),
+            #000000;
+        z-index: 0;
+    }
+
+    /* Hero Content */
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 780px;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: clamp(2rem, 8vw, 10rem);
+    }
+
+    /* Eyebrow */
+    .hero-eyebrow {
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+
+    /* H1 */
+    .hero-h1 {
+        display: flex;
+        flex-direction: column;
+        font-weight: 700;
+        font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin-bottom: 1.75rem;
+        text-transform: none;
+    }
+
+    .hero-h1 span {
+        display: block;
+        white-space: nowrap;
+    }
+
+    .accent-dot {
+        color: var(--accent);
+    }
+
+    /* Subheading */
+    .hero-subheading {
+        color: var(--text-muted);
+        max-width: 560px;
+        margin-bottom: 2.5rem;
+        font-size: 1.0625rem;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    .hero-subheading .brand-name {
+        color: var(--text-primary);
+        font-size: inherit;
+    }
+
+    /* CTA Row */
+    .hero-cta-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    /* Stat Strip */
+    .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        width: 100%;
+        max-width: 780px;
+    }
+
+    /* ── Mobile ────────────────── */
+    @media (max-width: 768px) {
+        .hero {
+            padding: 7rem 1.25rem 3rem;
+            min-height: auto;
+            justify-content: flex-start;
+        }
+
+        .hero-content {
+            margin-left: 0;
+        }
+
+        .hero-h1 {
+            font-size: clamp(2.2rem, 9vw, 3rem);
+        }
+
+        .hero-h1 span {
+            white-space: normal;
+        }
+
+        .hero-subheading {
+            font-size: 0.9375rem;
+            max-width: 100%;
+        }
+
+        .hero-cta-row {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .hero-cta-row :global(a) {
+            width: 100%;
+        }
+
+        .hero-stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>

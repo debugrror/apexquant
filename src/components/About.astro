@@ -1,0 +1,275 @@
+---
+import { Image } from "astro:assets";
+import BrandDivider from "./ui/BrandDivider.astro";
+---
+
+<section class="about" id="about">
+    <div class="about-inner">
+        <!-- Decorative section number -->
+        <span class="section-number" aria-hidden="true">01</span>
+
+        <!-- Two-column grid -->
+        <div class="about-grid">
+            <!-- Left column: Copy -->
+            <div class="about-copy anim-about-text">
+                <!-- Eyebrow label -->
+                <span class="font-mono-label" style="color: var(--accent);">
+                    ◆&nbsp; ABOUT THE FIRM
+                </span>
+
+                <!-- Headline -->
+                <h2 class="about-headline">
+                    Built at the Intersection of Quantitative Finance and
+                    Engineering Excellence
+                </h2>
+
+                <!-- Body — 3 paragraphs (EEAT-optimised copy from PROMPT.md) -->
+                <div class="about-body">
+                    <p>
+                        <span class="brand-name">APEX QUANTS LLP</span> is a specialist
+                        quantitative engineering firm. We design and deliver the systems
+                        that institutional traders, fintech operators, and enterprise
+                        technology teams depend on — where microseconds matter, where
+                        capital is at stake, and where failure is not an option.
+                    </p>
+                    <p>
+                        Founded by engineers and quantitative researchers with
+                        deep expertise in capital markets infrastructure, we
+                        work at a level of technical rigour that generalist
+                        agencies cannot match. We don't just write code — we
+                        architect systems with the mathematical precision and
+                        performance characteristics that high-frequency trading
+                        and large-scale financial platforms demand.
+                    </p>
+                    <p>
+                        Our firm partners with hedge funds, proprietary trading
+                        desks, fintech startups, and enterprise organisations
+                        seeking to build or modernise their digital and
+                        quantitative infrastructure.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right column: Image -->
+            <div class="about-visual anim-about-visual">
+                <div class="about-image-wrapper">
+                    <Image
+                        src="/images/about-bg.png"
+                        alt="Abstract precision engineering visualization with geometric grid structures and neon green luminescence"
+                        loading="lazy"
+                        width="600"
+                        height="600"
+                    />
+                    <!-- Subtle glow overlay -->
+                    <div class="about-image-glow" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brand divider at section bottom -->
+    <BrandDivider />
+</section>
+
+<!-- Scroll-triggered fade-up animation -->
+<script>
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+        const targets = aboutSection.querySelectorAll(
+            ".anim-about-text, .anim-about-visual",
+        );
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.15 },
+        );
+
+        targets.forEach((el) => observer.observe(el));
+    }
+</script>
+
+<style>
+    .about {
+        position: relative;
+        padding: 7rem 1.5rem 0;
+        background: var(--bg-primary);
+        overflow: hidden;
+    }
+
+    .about-inner {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ── Decorative section number ──────────────────────────── */
+    .section-number {
+        position: absolute;
+        top: -1.5rem;
+        left: -0.5rem;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(6rem, 12vw, 10rem);
+        color: #1a1a1a;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+    }
+
+    /* ── Two-column grid ────────────────────────────────────── */
+    .about-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    /* ── Left column — Copy ─────────────────────────────────── */
+    .about-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .about-headline {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--text-primary);
+    }
+
+    .about-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .about-body p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .about-body .brand-name {
+        color: var(--text-primary);
+        font-size: inherit;
+    }
+
+    /* ── Right column — Visual ──────────────────────────────── */
+    .about-visual {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-image-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+    }
+
+    .about-image-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        opacity: 0.85;
+        transition: opacity 0.4s ease;
+    }
+
+    .about-image-wrapper:hover img {
+        opacity: 1;
+    }
+
+    /* Subtle corner glow */
+    .about-image-glow {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background: linear-gradient(
+            to top,
+            rgba(168, 255, 0, 0.06) 0%,
+            transparent 100%
+        );
+        pointer-events: none;
+    }
+
+    /* ── Scroll-triggered animation ─────────────────────────── */
+    .anim-about-text {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 0.7s ease-out,
+            transform 0.7s ease-out;
+    }
+
+    .anim-about-visual {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 0.7s ease-out 0.2s,
+            transform 0.7s ease-out 0.2s;
+    }
+
+    .anim-about-text.visible,
+    .anim-about-visual.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+        .about {
+            padding: 5rem 1.25rem 0;
+        }
+
+        .about-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        /* Image goes below text on mobile */
+        .about-visual {
+            order: 2;
+        }
+
+        .about-copy {
+            order: 1;
+        }
+
+        .section-number {
+            font-size: clamp(4rem, 20vw, 6rem);
+            top: -1rem;
+            left: -0.25rem;
+        }
+
+        .about-image-wrapper {
+            max-width: 100%;
+        }
+    }
+
+    /* ── Prefers reduced motion ─────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+        .anim-about-text,
+        .anim-about-visual {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+</style>

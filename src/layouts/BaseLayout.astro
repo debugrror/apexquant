@@ -1,0 +1,321 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+const {
+  title = "APEX QUANTS LLP — Quantitative Engineering & Trading Infrastructure",
+  description = "APEX QUANTS LLP engineers high-performance algorithmic trading systems, AI-driven financial platforms, and enterprise cloud infrastructure for hedge funds, fintech firms, and capital market operators.",
+  ogTitle = "APEX QUANTS LLP — Quantitative Engineering Firm",
+  ogDescription = "Institutional-grade trading infrastructure, quantitative research systems, and enterprise technology — engineered for capital markets.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.apexquants.com" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content="https://www.apexquants.com" />
+    <meta property="og:site_name" content="APEX QUANTS LLP" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Fonts: Barlow Condensed (display), Barlow (body), JetBrains Mono (mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global Styles -->
+    <style is:global>
+      @import "../styles/global.css";
+    </style>
+  </head>
+  <body>
+    <!-- Floating Quant Formulas Background Layer -->
+    <canvas id="quant-formulas-canvas" aria-hidden="true"></canvas>
+
+    <slot />
+
+    <style is:global>
+      #quant-formulas-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        pointer-events: none;
+      }
+    </style>
+
+    <script>
+      (function () {
+        const FORMULAS_ENABLED: boolean = false;
+        if (!FORMULAS_ENABLED) return;
+
+        /* ── Guard: reduced motion ───────────────────────────── */
+        const motionQuery: MediaQueryList = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+        if (motionQuery.matches) return;
+
+        /* ── Guard: mobile (<768px) ──────────────────────────── */
+        if (window.innerWidth < 768) return;
+
+        const canvas: HTMLCanvasElement | null = document.getElementById(
+          "quant-formulas-canvas",
+        ) as HTMLCanvasElement | null;
+        if (!canvas) return;
+        const ctx: CanvasRenderingContext2D | null = canvas.getContext("2d");
+        if (!ctx) return;
+
+        // After the guards above, canvas and ctx are guaranteed non-null.
+        // Re-bind to non-nullable references so TS doesn't warn downstream.
+        const cvs: HTMLCanvasElement = canvas;
+        const c: CanvasRenderingContext2D = ctx;
+
+        /* ── Types ───────────────────────────────────────────── */
+        interface FormulaParticle {
+          text: string;
+          x: number;
+          y: number;
+          fontSize: number;
+          opacity: number;
+          vx: number;
+          vy: number;
+        }
+
+        /* ── Formula pool (weighted mix) ─────────────────────── */
+        const symbols: string[] = [
+          "σ",
+          "μ",
+          "Δ",
+          "dW",
+          "β",
+          "ρ",
+          "∫",
+          "∇",
+          "λ",
+          "θ",
+          "f(x)",
+          "lim",
+          "dx/dt",
+        ];
+        const shorts: string[] = [
+          "∂V/∂S",
+          "N(d₁)",
+          "E[R]",
+          "√t",
+          "Σwᵢrᵢ",
+          "VaR",
+          "CVaR",
+          "VWAP",
+          "TWAP",
+          "α",
+          "Sharpe",
+        ];
+        const fulls: string[] = [
+          "dS = μS dt + σS dW",
+          "C = S·N(d₁) - Ke⁻ʳᵀ·N(d₂)",
+          "ρ(X,Y)",
+          "E[L | L > VaR]",
+          "Σ(Pᵢ × Vᵢ) / ΣVᵢ",
+          "VaR = μ - zσ√t",
+          "ρ(X,Y) = Cov(X,Y) / (σx · σy)",
+        ];
+
+        // Build weighted pool: roughly 40% symbols, 35% short, 25% full
+        const FORMULAS: string[] = [];
+        for (let i = 0; i < 4; i++) FORMULAS.push(...symbols);
+        for (let i = 0; i < 3; i++) FORMULAS.push(...shorts);
+        for (let i = 0; i < 2; i++) FORMULAS.push(...fulls);
+
+        /* ── Config ──────────────────────────────────────────── */
+        const GRID_SIZE: number = 200; // ~180px-220px spacing
+        const MIN_OPACITY: number = 0.15;
+        const MAX_OPACITY: number = 0.18;
+        const FONT_MIN: number = 9.6; // ~0.6rem
+        const FONT_MAX: number = 12; // ~0.75rem
+        const COLOR: string = "#A8FF00";
+        const FONT_FAMILY: string = '"JetBrains Mono", monospace';
+
+        // Speed: reduced 35% from previous — very gentle drift
+        const MIN_SPEED: number = 0.51;
+        const MAX_SPEED: number = 0.71;
+
+        let dpr: number = window.devicePixelRatio || 1;
+        let W: number = window.innerWidth;
+        let H: number = window.innerHeight;
+        let particles: FormulaParticle[] = [];
+
+        function getRandomFormula(): string {
+          return FORMULAS[Math.floor(Math.random() * FORMULAS.length)];
+        }
+
+        function randomAngle(): number {
+          return Math.random() * Math.PI * 2; // Full 360°
+        }
+
+        function randomSpeed(): number {
+          return MIN_SPEED + Math.random() * (MAX_SPEED - MIN_SPEED);
+        }
+
+        /* ── Particle and Grid ───────────────────────────────── */
+        function createParticle(baseX: number, baseY: number): FormulaParticle {
+          const fontSize: number =
+            FONT_MIN + Math.random() * (FONT_MAX - FONT_MIN);
+          const opacity: number =
+            MIN_OPACITY + Math.random() * (MAX_OPACITY - MIN_OPACITY);
+          const speed: number = randomSpeed();
+
+          // Full 360° — every formula gets its own independent direction
+          const angle: number = randomAngle();
+
+          // Jitter to make it a loose grid rather than perfect squares
+          const jX: number = baseX + (Math.random() - 0.5) * 80;
+          const jY: number = baseY + (Math.random() - 0.5) * 80;
+
+          return {
+            text: getRandomFormula(),
+            x: jX,
+            y: jY,
+            fontSize,
+            opacity,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+          };
+        }
+
+        function initParticles(): void {
+          particles = [];
+          const margin: number = 200;
+          for (let x = -margin; x <= W + margin; x += GRID_SIZE) {
+            for (let y = -margin; y <= H + margin; y += GRID_SIZE) {
+              particles.push(createParticle(x, y));
+            }
+          }
+        }
+
+        let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
+        function resize(): void {
+          dpr = window.devicePixelRatio || 1;
+          W = window.innerWidth;
+          H = window.innerHeight;
+          cvs.width = W * dpr;
+          cvs.height = H * dpr;
+          cvs.style.width = W + "px";
+          cvs.style.height = H + "px";
+          c.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+          // Reinitialize particles to fit new grid properly after a debounce
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(initParticles, 300);
+        }
+
+        // Initial setup
+        cvs.width = W * dpr;
+        cvs.height = H * dpr;
+        cvs.style.width = W + "px";
+        cvs.style.height = H + "px";
+        c.setTransform(dpr, 0, 0, dpr, 0, 0);
+        initParticles();
+
+        window.addEventListener("resize", resize);
+
+        /* ── Animation loop ──────────────────────────────────── */
+        let animId: number = 0;
+
+        function draw(): void {
+          c.clearRect(0, 0, W, H);
+
+          for (let i = 0; i < particles.length; i++) {
+            const p: FormulaParticle = particles[i];
+
+            c.globalAlpha = p.opacity;
+            c.font = p.fontSize + "px " + FONT_FAMILY;
+            c.fillStyle = COLOR;
+            c.fillText(p.text, p.x, p.y);
+
+            // Move
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Respawn on opposite edge with new random direction
+            const margin: number = 250;
+            if (p.y < -margin) {
+              p.y = H + margin - 10;
+              p.text = getRandomFormula();
+              const a: number = randomAngle(),
+                s: number = randomSpeed();
+              p.vx = Math.cos(a) * s;
+              p.vy = Math.sin(a) * s;
+            }
+            if (p.y > H + margin) {
+              p.y = -margin + 10;
+              p.text = getRandomFormula();
+              const a: number = randomAngle(),
+                s: number = randomSpeed();
+              p.vx = Math.cos(a) * s;
+              p.vy = Math.sin(a) * s;
+            }
+            if (p.x < -margin) {
+              p.x = W + margin - 10;
+              p.text = getRandomFormula();
+              const a: number = randomAngle(),
+                s: number = randomSpeed();
+              p.vx = Math.cos(a) * s;
+              p.vy = Math.sin(a) * s;
+            }
+            if (p.x > W + margin) {
+              p.x = -margin + 10;
+              p.text = getRandomFormula();
+              const a: number = randomAngle(),
+                s: number = randomSpeed();
+              p.vx = Math.cos(a) * s;
+              p.vy = Math.sin(a) * s;
+            }
+          }
+
+          c.globalAlpha = 1;
+          animId = requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        /* ── Cleanup on reduced-motion change ────────────────── */
+        motionQuery.addEventListener("change", (e) => {
+          if (e.matches) {
+            cancelAnimationFrame(animId);
+            c.clearRect(0, 0, W, H);
+            cvs.style.display = "none";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,391 @@
+---
+import BrandDivider from "./ui/BrandDivider.astro";
+
+const services = [
+    {
+        num: "01",
+        name: "Algorithmic Trading Development",
+        description:
+            "End-to-end strategy engineering for Equities, Futures, Forex, and Cryptocurrency markets. From signal generation to live order routing — we architect the complete execution stack.",
+    },
+    {
+        num: "02",
+        name: "High-Frequency & Low-Latency Architecture",
+        description:
+            "Co-location-ready trading infrastructure engineered for sub-millisecond execution. We optimise at every layer: kernel bypass networking, lock-free data structures, and hardware-aware code paths.",
+    },
+    {
+        num: "03",
+        name: "Quantitative Research & Signal Development",
+        description:
+            "Rigorous alpha research frameworks: factor model construction, statistical signal validation, walk-forward testing, and backtesting engines designed to avoid look-ahead bias and overfitting.",
+    },
+    {
+        num: "04",
+        name: "Statistical Arbitrage & Market Neutrality",
+        description:
+            "Pairs trading, cointegration strategies, and cross-asset statistical arbitrage. Systems engineered to identify and exploit structural pricing inefficiencies with market-neutral risk exposures.",
+    },
+    {
+        num: "05",
+        name: "Portfolio Construction & Risk Modelling",
+        description:
+            "Monte Carlo simulation, VaR and CVaR risk attribution, factor decomposition, and drawdown control systems. We quantify risk with institutional-grade rigour across multi-asset portfolios.",
+    },
+    {
+        num: "06",
+        name: "Execution Algorithms",
+        description:
+            "Smart order routing with TWAP, VWAP, Implementation Shortfall, and Arrival Price algorithms. Designed to minimise market impact and slippage during large position builds or liquidations.",
+    },
+    {
+        num: "07",
+        name: "Market Analysis & Forecasting",
+        description:
+            "Machine Learning-based regime detection (Hidden Markov Models, clustering approaches), volatility forecasting, and factor-based return prediction models with live production deployment pipelines.",
+    },
+];
+---
+
+<section class="quant-services" id="quant">
+    <div class="quant-inner">
+        <!-- Decorative section number -->
+        <span class="section-number" aria-hidden="true">03</span>
+
+        <!-- Header block -->
+        <div class="quant-header anim-quant-header">
+            <span class="font-mono-label" style="color: var(--accent);">
+                ◆&nbsp; QUANTITATIVE ENGINEERING
+            </span>
+
+            <h2 class="quant-headline">
+                Institutional-Grade Quantitative Infrastructure
+            </h2>
+
+            <p class="quant-intro">
+                Our Quantitative Engineering practice serves capital market
+                participants who require mathematical rigour, execution
+                precision, and system reliability that commercial platforms
+                cannot provide. We design from first principles — every
+                component purpose-built for the performance envelope of
+                professional trading.
+            </p>
+        </div>
+
+        <!-- Full-bleed terminal visual band -->
+        <div class="quant-visual-band anim-quant-visual" aria-hidden="true">
+            <div class="terminal-grid">
+                <!-- Animated waveform bars — CSS only -->
+                {
+                    Array.from({ length: 60 }).map((_, i) => (
+                        <div
+                            class="bar"
+                            style={`--i: ${i}; --h: ${20 + Math.sin(i * 0.4) * 30 + Math.random() * 25}%;`}
+                        />
+                    ))
+                }
+            </div>
+            <!-- Scanline overlay -->
+            <div class="scanline-overlay"></div>
+        </div>
+
+        <!-- Numbered service list -->
+        <div class="quant-list">
+            {
+                services.map((service, i) => (
+                    <div
+                        class="quant-item anim-quant-item"
+                        style={`animation-delay: ${0.1 * i}s;`}
+                    >
+                        <div class="quant-item-left">
+                            <span class="quant-num">{service.num}.</span>
+                            <h3 class="quant-name">{service.name}</h3>
+                        </div>
+                        <p class="quant-desc">{service.description}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- Brand divider -->
+    <BrandDivider />
+</section>
+
+<!-- Scroll-triggered staggered slide-in -->
+<script>
+    const quantSection = document.getElementById("quant");
+    if (quantSection) {
+        const targets = quantSection.querySelectorAll(
+            ".anim-quant-header, .anim-quant-visual, .anim-quant-item",
+        );
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.1 },
+        );
+
+        targets.forEach((el) => observer.observe(el));
+    }
+</script>
+
+<style>
+    .quant-services {
+        position: relative;
+        padding: 7rem 1.5rem 0;
+        background: var(--bg-primary);
+        overflow: hidden;
+    }
+
+    .quant-inner {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ── Decorative section number ──────────────────────────── */
+    .section-number {
+        position: absolute;
+        top: -1.5rem;
+        left: -0.5rem;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(6rem, 12vw, 10rem);
+        color: #1a1a1a;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+    }
+
+    /* ── Header block ───────────────────────────────────────── */
+    .quant-header {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        max-width: 780px;
+        margin-bottom: 3rem;
+    }
+
+    .quant-headline {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--text-primary);
+    }
+
+    .quant-intro {
+        color: var(--text-muted);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+        max-width: 700px;
+    }
+
+    /* ── Terminal visual band ───────────────────────────────── */
+    .quant-visual-band {
+        position: relative;
+        width: calc(100% + 3rem);
+        margin-left: -1.5rem;
+        height: 120px;
+        background: #050505;
+        border-top: 1px solid rgba(168, 255, 0, 0.15);
+        border-bottom: 1px solid rgba(168, 255, 0, 0.15);
+        margin-bottom: 3rem;
+        overflow: hidden;
+    }
+
+    .terminal-grid {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 3px;
+        height: 100%;
+        padding: 12px 2rem;
+    }
+
+    .bar {
+        flex: 1;
+        max-width: 12px;
+        height: var(--h);
+        background: linear-gradient(
+            to top,
+            rgba(168, 255, 0, 0.6) 0%,
+            rgba(168, 255, 0, 0.15) 100%
+        );
+        border-radius: 1px 1px 0 0;
+        animation: barPulse 3s ease-in-out calc(var(--i) * 0.05s) infinite
+            alternate;
+    }
+
+    @keyframes barPulse {
+        0% {
+            opacity: 0.5;
+            transform: scaleY(1);
+        }
+        50% {
+            opacity: 0.9;
+            transform: scaleY(1.15);
+        }
+        100% {
+            opacity: 0.5;
+            transform: scaleY(0.85);
+        }
+    }
+
+    .scanline-overlay {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 2px,
+            rgba(0, 0, 0, 0.15) 2px,
+            rgba(0, 0, 0, 0.15) 4px
+        );
+        pointer-events: none;
+    }
+
+    /* ── Numbered service list ──────────────────────────────── */
+    .quant-list {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .quant-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: baseline;
+        padding: 2rem 0;
+        border-bottom: 1px solid rgba(168, 255, 0, 0.12);
+    }
+
+    .quant-item:first-child {
+        border-top: 1px solid rgba(168, 255, 0, 0.12);
+    }
+
+    .quant-item-left {
+        display: flex;
+        align-items: baseline;
+        gap: 1.25rem;
+    }
+
+    .quant-num {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        color: var(--accent);
+        opacity: 0.4;
+        line-height: 1;
+        flex-shrink: 0;
+        min-width: 4.5rem;
+    }
+
+    .quant-name {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+        color: var(--text-primary);
+    }
+
+    .quant-desc {
+        color: var(--text-muted);
+        font-size: 0.9375rem;
+        line-height: 1.65;
+    }
+
+    /* ── Scroll animations ──────────────────────────────────── */
+    .anim-quant-header {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 0.7s ease-out,
+            transform 0.7s ease-out;
+    }
+
+    .anim-quant-visual {
+        opacity: 0;
+        transition: opacity 0.8s ease-out 0.2s;
+    }
+
+    .anim-quant-item {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition:
+            opacity 0.5s ease-out,
+            transform 0.5s ease-out;
+    }
+
+    .anim-quant-header.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .anim-quant-visual.visible {
+        opacity: 1;
+    }
+
+    .anim-quant-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+        .quant-services {
+            padding: 5rem 1.25rem 0;
+        }
+
+        .quant-item {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .quant-num {
+            font-size: clamp(2rem, 10vw, 2.5rem);
+            min-width: 3rem;
+        }
+
+        .quant-visual-band {
+            height: 80px;
+            width: calc(100% + 2.5rem);
+            margin-left: -1.25rem;
+        }
+
+        .section-number {
+            font-size: clamp(4rem, 20vw, 6rem);
+            top: -1rem;
+            left: -0.25rem;
+        }
+    }
+
+    /* ── Prefers reduced motion ─────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+        .anim-quant-header,
+        .anim-quant-visual,
+        .anim-quant-item {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .bar {
+            animation: none !important;
+        }
+    }
+</style>

@@ -1,0 +1,261 @@
+---
+
+---
+
+<nav class="nav anim-nav" id="main-nav">
+    <div class="nav-inner">
+        <!-- Logo -->
+        <a href="/" class="nav-logo" aria-label="APEX QUANTS LLP Home">
+            <img
+                src="/images/logo.png"
+                alt="Apex Quants Logo"
+                class="nav-logo-mark"
+                width="36"
+                height="36"
+            />
+            <span class="nav-wordmark brand-name">APEX QUANTS LLP</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="nav-links" id="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#quant" class="nav-link">Quant</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="nav-cta-wrap">
+            <a href="#contact" class="nav-cta-btn">Engage Us →</a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button
+            class="nav-hamburger"
+            id="nav-hamburger"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+        >
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#quant" class="mobile-link">Quant</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+        <a href="#contact" class="mobile-link mobile-cta-link">Engage Us →</a>
+    </div>
+</nav>
+
+<script>
+    // --- Scroll-based nav border ---
+    const nav = document.getElementById("main-nav");
+    const onScroll = () => {
+        if (!nav) return;
+        if (window.scrollY > 50) {
+            nav.classList.add("nav--scrolled");
+        } else {
+            nav.classList.remove("nav--scrolled");
+        }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // --- Mobile hamburger toggle ---
+    const hamburger = document.getElementById("nav-hamburger");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    hamburger?.addEventListener("click", () => {
+        const isOpen = mobileMenu?.classList.toggle("mobile-menu--open");
+        hamburger.classList.toggle("hamburger--open", isOpen);
+        hamburger.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Close mobile menu on link click
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.remove("mobile-menu--open");
+            hamburger?.classList.remove("hamburger--open");
+            hamburger?.setAttribute("aria-expanded", "false");
+        });
+    });
+</script>
+
+<style>
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(0, 0, 0, 0.85);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+
+    .nav--scrolled {
+        border-bottom-color: var(--bg-elevated);
+    }
+
+    .nav-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Logo */
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+    }
+
+    .nav-logo-mark {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+    }
+
+    .nav-wordmark {
+        font-size: 0.9375rem;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+    }
+
+    /* Desktop Links */
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.25rem;
+    }
+
+    .nav-link {
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: #ffffff;
+        transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--accent);
+    }
+
+    /* Nav CTA - ghost style */
+    .nav-cta-wrap {
+        flex-shrink: 0;
+    }
+
+    .nav-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        padding: 0.5rem 1.25rem;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        border-radius: 0;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .nav-cta-btn:hover {
+        background: var(--accent);
+        color: #000000;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .hamburger-bar {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger--open .hamburger-bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger--open .hamburger-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger--open .hamburger-bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem 2.5rem;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--bg-elevated);
+    }
+
+    .mobile-menu--open {
+        display: flex;
+    }
+
+    .mobile-link {
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 1.0625rem;
+        color: #ffffff;
+        transition: color 0.2s ease;
+    }
+
+    .mobile-link:hover {
+        color: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .nav-links,
+        .nav-cta-wrap {
+            display: none;
+        }
+
+        .nav-hamburger {
+            display: flex;
+        }
+
+        .nav-wordmark {
+            font-size: 0.8125rem;
+        }
+    }
+</style>
