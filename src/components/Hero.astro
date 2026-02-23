@@ -22,6 +22,9 @@ const stats = [
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="dot-grid-overlay" aria-hidden="true"></div>
 
+    <!-- Right Side 3D Volatility Surface -->
+    <div class="hero-3d-surface" id="hero-3d-surface"></div>
+
     <!-- Hero Content -->
     <div class="hero-content">
         <!-- Eyebrow -->
@@ -175,6 +178,18 @@ const stats = [
         z-index: 0;
     }
 
+    /* 3D Surface Container */
+    .hero-3d-surface {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 45vw;
+        height: 70vh;
+        z-index: 5;
+        pointer-events: auto; /* Enable hover events for pause */
+    }
+
     /* Hero Content */
     .hero-content {
         position: relative;
@@ -248,7 +263,13 @@ const stats = [
         max-width: 780px;
     }
 
-    /* ── Mobile ────────────────── */
+    /* ── Mobile & Tablet ────────────────── */
+    @media (max-width: 1023px) {
+        .hero-3d-surface {
+            display: none;
+        }
+    }
+
     @media (max-width: 768px) {
         .hero {
             padding: 7rem 1.25rem 3rem;
@@ -287,3 +308,207 @@ const stats = [
         }
     }
 </style>
+
+<!-- 3D Volatility Surface Script -->
+<script type="module" is:inline>
+    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+    function initVolSurface() {
+        const container = document.getElementById("hero-3d-surface");
+        if (!container) return;
+
+        // Dimensions
+        let cw = container.clientWidth || window.innerWidth * 0.45;
+        let ch = container.clientHeight || window.innerHeight * 0.7;
+
+        const scene = new THREE.Scene();
+
+        // Camera
+        const camera = new THREE.PerspectiveCamera(45, cw / ch, 0.1, 100);
+        // Position camera to look down at the surface
+        camera.position.set(13, 10, 13);
+        camera.lookAt(0, 0, 0);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true,
+        });
+        renderer.setSize(cw, ch);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        /* ── Geometry ── */
+        // Plane runs from -5 to 5 on X and Y
+        const segmentsX = 40;
+        const segmentsY = 40;
+        const geometry = new THREE.PlaneGeometry(10, 10, segmentsX, segmentsY);
+
+        const pos = geometry.attributes.position;
+        const zValues = new Float32Array(pos.count);
+        let minZ = Infinity;
+        let maxZ = -Infinity;
+
+        // Calculate volatility for each point
+        for (let i = 0; i < pos.count; i++) {
+            const x = pos.getX(i); // -5 to 5 -> Moneyness
+            const y = pos.getY(i); // -5 to 5 -> Expiry
+
+            // Normalise X (Moneyness): -1 (put wing) to 1 (call wing)
+            const m = x / 5;
+
+            // Normalise Y (Time to Expiry): 0.1 to 2.0
+            // Since plane Y is applied to global -Z, y=-5 is front (short tte), y=5 is back (long tte)
+            const t = 0.1 + ((y + 5) / 10) * 1.9;
+
+            // Volatility formula components
+            const baseVol = 0.2 + 0.1 / Math.sqrt(t);
+            const smile = (0.8 / Math.sqrt(t)) * (m * m);
+            const skew = (-0.2 / Math.sqrt(t)) * m; // Put skew (higher on left)
+
+            const z = baseVol + smile + skew;
+            zValues[i] = z;
+
+            if (z < minZ) minZ = z;
+            if (z > maxZ) maxZ = z;
+        }
+
+        // Apply heights and colors
+        const colors = new Float32Array(pos.count * 3);
+        // Low vol color: subtle #A8FF00 at 5%
+        const colorLow = new THREE.Color(
+            (168 / 255) * 0.05,
+            (255 / 255) * 0.05,
+            0,
+        );
+        // High vol color: stronger #A8FF00 at 15%
+        const colorHigh = new THREE.Color(
+            (168 / 255) * 0.15,
+            (255 / 255) * 0.15,
+            0,
+        );
+        const tempColor = new THREE.Color();
+
+        for (let i = 0; i < pos.count; i++) {
+            const z = zValues[i];
+
+            // Scale Z so surface looks physically balanced (approx 0 to 4 range)
+            const normalizedZ = (z - minZ) / (maxZ - minZ);
+            const displayZ = normalizedZ * 4 - 1;
+
+            pos.setZ(i, displayZ);
+
+            // Interpolate color based on height
+            tempColor.copy(colorLow).lerp(colorHigh, normalizedZ);
+            colors[i * 3] = tempColor.r;
+            colors[i * 3 + 1] = tempColor.g;
+            colors[i * 3 + 2] = tempColor.b;
+        }
+
+        geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+        geometry.computeVertexNormals();
+
+        /* ── Materials ── */
+        // 1. Transparent face fill using additive blending
+        const surfaceMat = new THREE.MeshBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+        });
+        const surfaceMesh = new THREE.Mesh(geometry, surfaceMat);
+        // Rotate plane so Z becomes vertical height
+        surfaceMesh.rotation.x = -Math.PI / 2;
+
+        // 2. Wireframe lines
+        const wireMat = new THREE.MeshBasicMaterial({
+            color: 0xa8ff00,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5,
+            side: THREE.DoubleSide,
+        });
+        const wireMesh = new THREE.Mesh(geometry, wireMat);
+        wireMesh.rotation.x = -Math.PI / 2;
+
+        /* ── Axis Helper (Visual purely, not labeled) ── */
+        // Box outline for technical feel
+        const boxGeom = new THREE.BoxGeometry(10, 4, 10);
+        const boxEdges = new THREE.EdgesGeometry(boxGeom);
+        const boxMat = new THREE.LineBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.2,
+        });
+        const boxLines = new THREE.LineSegments(boxEdges, boxMat);
+        boxLines.position.y = 1; // Center height to match surface
+
+        // Group everything
+        const surfaceGroup = new THREE.Group();
+        surfaceGroup.add(surfaceMesh);
+        surfaceGroup.add(wireMesh);
+        surfaceGroup.add(boxLines);
+        // Tilt slightly for better view
+        surfaceGroup.rotation.x = 0.1;
+        scene.add(surfaceGroup);
+
+        /* ── Animation & Interaction ── */
+        const clock = new THREE.Clock();
+        let isHovered = false;
+
+        container.addEventListener("mouseenter", () => (isHovered = true));
+        container.addEventListener("mouseleave", () => (isHovered = false));
+
+        let animId;
+        function animate() {
+            animId = requestAnimationFrame(animate);
+            const delta = Math.min(clock.getDelta(), 0.1); // Cap delta
+
+            // Auto rotation: 1 full rotation (Math.PI*2) every 20s
+            if (!isHovered) {
+                // Rotate around vertical Y axis
+                surfaceGroup.rotation.y += ((Math.PI * 2) / 20) * delta;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        /* ── Handle Resize ── */
+        function onWindowResize() {
+            if (!container) return;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            if (width === 0 || height === 0) return; // Hidden on mobile
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        window.addEventListener("resize", onWindowResize);
+
+        // Start
+        animate();
+
+        // Return cleanup function (though rarely needed in Astro generic scripts, good practice)
+        return () => {
+            cancelAnimationFrame(animId);
+            window.removeEventListener("resize", onWindowResize);
+            geometry.dispose();
+            surfaceMat.dispose();
+            wireMat.dispose();
+            boxGeom.dispose();
+            boxMat.dispose();
+            renderer.dispose();
+        };
+    }
+
+    // Wait for DOM
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initVolSurface);
+    } else {
+        initVolSurface();
+    }
+</script>
