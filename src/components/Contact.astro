@@ -114,19 +114,20 @@
 
             <!-- Right Column: Contact Form -->
             <div class="contact-form-wrapper anim-contact-right">
-                <!-- Formspree fallback: action="https://formspree.io/f/your_id" method="POST" -->
+                <!-- Same Formspree form the old PHP site used; host-agnostic (Vercel, nginx, anywhere) -->
                 <form
                     class="contact-form"
                     name="contact"
                     method="POST"
-                    data-netlify="true"
-                    netlify-honeypot="bot-field"
+                    action="https://formspree.io/f/myzdblog"
                 >
-                    <input type="hidden" name="form-name" value="contact" />
+                    <!-- Formspree honeypot: submissions with _gotcha filled are dropped -->
                     <p class="hidden" style="display: none;">
                         <label
                             >Don't fill this out if you're human: <input
-                                name="bot-field"
+                                name="_gotcha"
+                                tabindex="-1"
+                                autocomplete="off"
                             /></label
                         >
                     </p>
