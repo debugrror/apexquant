@@ -135,7 +135,7 @@ Build in this order across separate sessions:
 ```
 Left:   [Logo mark SVG] + "APEXQUANTS" wordmark (all caps, Barlow Condensed 900, neon green)
 Center: Subtle links — About | Services | Quant | Contact
-Right:  CTA Button — "Engage Us →" (black text on neon green bg, sharp corners 0px radius)
+Right:  CTA Button — "Contact Us →" (black text on neon green bg, sharp corners 0px radius)
 ```
 
 * Nav is `position: fixed`, `backdrop-filter: blur(20px)`, background `rgba(0,0,0,0.85)`
