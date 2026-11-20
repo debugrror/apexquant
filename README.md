@@ -1,4 +1,4 @@
-# APEX QUANTS LLP — Website
+# APEXQUANTS — Website
 
 Static Astro 5 + Tailwind site for apexquants.com.
 

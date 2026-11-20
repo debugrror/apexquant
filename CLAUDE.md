@@ -1,4 +1,4 @@
-This is the APEX QUANTS LLP website built with Astro + Tailwind.
+This is the APEXQUANTS website built with Astro + Tailwind.
 Before writing any component, read PROMPT.md for design system rules.
 Before starting any section, read CHECKLIST.md for that section's spec.
 
@@ -9,4 +9,4 @@ Hard rules (never break these):
 - Fonts: Barlow Condensed (headings), Barlow (body), JetBrains Mono (labels)
 - Zero border-radius on all buttons
 - No warm colours (red, orange, yellow)
-- "APEX QUANTS LLP" always ALL CAPS
+- "APEXQUANTS" always ALL CAPS

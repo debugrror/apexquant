@@ -1,12 +1,12 @@
-# APEX QUANTS LLP — Brand Design & Color Palette Guidelines
+# APEXQUANTS — Brand Design & Color Palette Guidelines
 
-> **Purpose:** This document defines the visual identity system for Apex Quants LLP. Use this as the single source of truth when generating any branded content, UI, presentations, documents, or marketing assets.
+> **Purpose:** This document defines the visual identity system for APEXQUANTS. Use this as the single source of truth when generating any branded content, UI, presentations, documents, or marketing assets.
 
 ---
 
 ## 1. BRAND IDENTITY OVERVIEW
 
-- **Company Name:** APEX QUANTS LLP
+- **Company Name:** APEXQUANTS
 - **Tagline (Primary):** Engineering Scalable Digital Systems & Quantitative Solutions
 - **Tagline (Secondary / Wordmark):** Crafting Code. Engineering Excellence. Elevating Businesses.
 - **Brand Archetype:** The Expert / The Architect — technical mastery, precision, elite performance
@@ -54,7 +54,7 @@ The PDF uses a bold, geometric sans-serif family throughout. The closest system-
 | Labels / Accents  | JetBrains Mono            | 600 (SemiBold) | Uppercase or Title |
 
 ### Typography Rules
-- The brand name "APEX QUANTS LLP" must **always appear in ALL CAPS**.
+- The brand name "APEXQUANTS" must **always appear in ALL CAPS**.
 - Headings use the **neon lime green** (`#A8FF00`) color on dark backgrounds.
 - Body text uses **white** (`#FFFFFF`) on dark backgrounds.
 - Avoid serif fonts entirely — they conflict with the brand's technical identity.
@@ -86,7 +86,7 @@ The PDF uses a bold, geometric sans-serif family throughout. The closest system-
 - Do **not** recolor the logo in any color other than the approved variants.
 - Do **not** add drop shadows, gradients, or outlines to the logo.
 - Do **not** stretch or distort the logo's proportions.
-- The wordmark "APEX QUANTS LLP" may appear below or beside the icon, never above.
+- The wordmark "APEXQUANTS" may appear below or beside the icon, never above.
 
 ---
 
@@ -175,4 +175,4 @@ The PDF uses a bold, geometric sans-serif family throughout. The closest system-
 
 ---
 
-*End of Brand Guidelines — Apex Quants LLP*
+*End of Brand Guidelines — APEXQUANTS*

@@ -1,4 +1,4 @@
-# APEX QUANTS LLP — Astro Website Build Prompt
+# APEXQUANTS — Astro Website Build Prompt
 
 ### Master Prompt v1.0 | Start: Hero Section
 
@@ -6,7 +6,7 @@
 
 ## OVERVIEW & CONTEXT
 
-You are building the official website for **APEX QUANTS LLP** — a quantitative engineering and technology firm that architects high-performance trading systems, AI-driven platforms, and enterprise-grade cloud infrastructure. Their clients are hedge funds, fintech firms, and serious enterprises.
+You are building the official website for **APEXQUANTS** — a quantitative engineering and technology firm that architects high-performance trading systems, AI-driven platforms, and enterprise-grade cloud infrastructure. Their clients are hedge funds, fintech firms, and serious enterprises.
 
 This is **not** a generic software agency website. It must communicate elite technical authority, quant-finance expertise, and engineering precision in every pixel, word, and interaction.
 
@@ -37,7 +37,7 @@ Think: the mechanical precision of a trading terminal, the visual authority of i
 * Feature grids with icon + headline + description cards
 * Minimal nav with a strong CTA button
 
-**Apex Quants goes further** — more authoritative, more enterprise, more "quant desk" than education platform. Think institutional, not startup.
+**APEXQUANTS goes further** — more authoritative, more enterprise, more "quant desk" than education platform. Think institutional, not startup.
 
 ---
 
@@ -87,7 +87,7 @@ Think: the mechanical precision of a trading terminal, the visual authority of i
 * Mono stat labels: `0.75rem` uppercase, letter-spacing `0.15em`
 * Letter spacing on display headings: `−0.02em` to `−0.03em` (tight tracking)
 
-**Rule:** `APEX QUANTS LLP` always renders in ALL CAPS, `font-weight: 900`.
+**Rule:** `APEXQUANTS` always renders in ALL CAPS, `font-weight: 900`.
 
 ---
 
@@ -133,7 +133,7 @@ Build in this order across separate sessions:
 ### Navigation (`Nav.astro`)
 
 ```
-Left:   [Logo mark SVG] + "APEX QUANTS LLP" wordmark (all caps, Barlow Condensed 900, neon green)
+Left:   [Logo mark SVG] + "APEXQUANTS" wordmark (all caps, Barlow Condensed 900, neon green)
 Center: Subtle links — About | Services | Quant | Contact
 Right:  CTA Button — "Engage Us →" (black text on neon green bg, sharp corners 0px radius)
 ```
@@ -181,7 +181,7 @@ Systems That Power
 Capital Markets.
 
 [SUBHEADING — body copy, #CCCCCC, max-width 560px]
-APEX QUANTS LLP architects high-performance algorithmic trading 
+APEXQUANTS architects high-performance algorithmic trading 
 infrastructure, AI-driven financial platforms, and enterprise cloud 
 systems — built for the precision demands of hedge funds, fintech 
 firms, and capital market operators.
@@ -258,7 +258,7 @@ All animations should use `prefers-reduced-motion` media query fallback (instant
 
 **Body:**
 
-> APEX QUANTS LLP is a specialist quantitative engineering firm. We design and deliver the systems that institutional traders, fintech operators, and enterprise technology teams depend on — where microseconds matter, where capital is at stake, and where failure is not an option.
+> APEXQUANTS is a specialist quantitative engineering firm. We design and deliver the systems that institutional traders, fintech operators, and enterprise technology teams depend on — where microseconds matter, where capital is at stake, and where failure is not an option.
 >
 > Founded by engineers and quantitative researchers with deep expertise in capital markets infrastructure, we work at a level of technical rigour that generalist agencies cannot match. We don't just write code — we architect systems with the mathematical precision and performance characteristics that high-frequency trading and large-scale financial platforms demand.
 >
@@ -334,7 +334,7 @@ Machine Learning-based regime detection (Hidden Markov Models, clustering approa
 
 ### Why Partner With Us Copy
 
-**Section Headline:** Why Leading Firms Choose APEX QUANTS
+**Section Headline:** Why Leading Firms Choose APEXQUANTS
 
 **Four Pillars:**
 
@@ -358,7 +358,7 @@ From CI/CD pipelines to AI agent workflows, we systematically identify and elimi
 
 **Micro-testimonial format (placeholder — replace with real quotes):**
 
-> "The latency reduction APEX QUANTS achieved on our order routing system was beyond what our internal team considered feasible. They understand market microstructure at a level that is rare."
+> "The latency reduction APEXQUANTS achieved on our order routing system was beyond what our internal team considered feasible. They understand market microstructure at a level that is rare."
 > — Head of Quantitative Trading, Proprietary Trading Firm
 
 > "We brought them in to architect our risk management platform from scratch. The system they delivered handles our full book in real time with the reliability we required from day one."
@@ -425,9 +425,9 @@ From CI/CD pipelines to AI agent workflows, we systematically identify and elimi
 ### SEO Meta (BaseLayout.astro)
 
 ```html
-<title>APEX QUANTS LLP — Quantitative Engineering & Trading Infrastructure</title>
-<meta name="description" content="APEX QUANTS LLP engineers high-performance algorithmic trading systems, AI-driven financial platforms, and enterprise cloud infrastructure for hedge funds, fintech firms, and capital market operators.">
-<meta property="og:title" content="APEX QUANTS LLP — Quantitative Engineering Firm">
+<title>APEXQUANTS — Quantitative Engineering & Trading Infrastructure</title>
+<meta name="description" content="APEXQUANTS engineers high-performance algorithmic trading systems, AI-driven financial platforms, and enterprise cloud infrastructure for hedge funds, fintech firms, and capital market operators.">
+<meta property="og:title" content="APEXQUANTS — Quantitative Engineering Firm">
 <meta property="og:description" content="Institutional-grade trading infrastructure, quantitative research systems, and enterprise technology — engineered for capital markets.">
 ```
 

@@ -8,9 +8,9 @@ interface Props {
 }
 
 const {
-  title = "APEX QUANTS LLP — Quantitative Engineering & Trading Infrastructure",
-  description = "APEX QUANTS LLP engineers high-performance algorithmic trading systems, AI-driven financial platforms, and enterprise cloud infrastructure for hedge funds, fintech firms, and capital market operators.",
-  ogTitle = "APEX QUANTS LLP — Quantitative Engineering Firm",
+  title = "APEXQUANTS — Quantitative Engineering & Trading Infrastructure",
+  description = "APEXQUANTS engineers high-performance algorithmic trading systems, AI-driven financial platforms, and enterprise cloud infrastructure for hedge funds, fintech firms, and capital market operators.",
+  ogTitle = "APEXQUANTS — Quantitative Engineering Firm",
   ogDescription = "Institutional-grade trading infrastructure, quantitative research systems, and enterprise technology — engineered for capital markets.",
   robots = "index, follow",
 } = Astro.props;
@@ -21,7 +21,7 @@ const ogImage = `${SITE}/og-image.png`;
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "APEX QUANTS LLP",
+  name: "APEXQUANTS",
   url: SITE,
   logo: `${SITE}/images/logo.png`,
   email: "info@apexquants.com",
@@ -47,12 +47,12 @@ const organization = {
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="APEX QUANTS LLP" />
+    <meta property="og:site_name" content="APEXQUANTS" />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="APEX QUANTS LLP — Quantitative engineering for capital markets" />
+    <meta property="og:image:alt" content="APEXQUANTS — Quantitative engineering for capital markets" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

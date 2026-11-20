@@ -1,4 +1,4 @@
-# APEX QUANTS LLP — Website Build Checklist
+# APEXQUANTS — Website Build Checklist
 
 ### All Sections (Post-Hero)
 
@@ -164,9 +164,9 @@ This section **must** use the technical quant terms: TWAP, VWAP, VaR, CVaR, Mont
 
 ### Checklist
 
-* [ ] Section label: `◆ WHY APEX QUANTS`
+* [ ] Section label: `◆ WHY APEXQUANTS`
 * [ ] Section number: `04` (decorative, dark)
-* [ ] Headline: *"Why Leading Firms Choose APEX QUANTS LLP"*
+* [ ] Headline: *"Why Leading Firms Choose APEXQUANTS"*
 * [ ] 4 pillars from improved copy:
   * [ ] Quant-Native Expertise
   * [ ] Security-First Architecture
@@ -295,7 +295,7 @@ Full-width dark section. Left: headline + body copy + contact details | Right: s
 
 ### Checklist
 
-* [ ] Logo mark + `APEX QUANTS LLP` wordmark (top left)
+* [ ] Logo mark + `APEXQUANTS` wordmark (top left)
 * [ ] Tagline below logo: *"Crafting Code. Engineering Excellence. Elevating Businesses."* (`#CCCCCC`, small)
 * [ ] 3-column footer links:
   * [ ] **Services:** Core Technology | Quantitative Engineering | AI & ML | Cloud & DevOps
@@ -304,7 +304,7 @@ Full-width dark section. Left: headline + body copy + contact details | Right: s
 * [ ] Column headings: `Barlow Condensed 700`, neon green, small caps, `0.75rem`
 * [ ] Links: white, `Barlow`, `0.875rem`, hover → neon green
 * [ ] Brand divider `——— ✦ ———` above copyright line
-* [ ] Copyright: `© <current year> APEX QUANTS LLP. All Rights Reserved.` (year rendered dynamically, not hard-coded) (`#CCCCCC`, mono, `0.75rem`)
+* [ ] Copyright: `© <current year> APEXQUANTS. All Rights Reserved.` (year rendered dynamically, not hard-coded) (`#CCCCCC`, mono, `0.75rem`)
 * [ ] Background: `#050505` (very slightly lighter than pure black for visual separation)
 * [ ] Responsive: 3-col → 1-col stack, logo centered on mobile
 
@@ -338,4 +338,4 @@ Full-width dark section. Left: headline + body copy + contact details | Right: s
 
 ---
 
-*End of Section Checklist — APEX QUANTS LLP*
+*End of Section Checklist — APEXQUANTS*
