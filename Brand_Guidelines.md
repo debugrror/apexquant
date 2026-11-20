@@ -169,7 +169,7 @@ The PDF uses a bold, geometric sans-serif family throughout. The closest system-
 
 | Field   | Value                     |
 |---------|---------------------------|
-| Website | www.apexquants.com        |
+| Website | apexquants.com        |
 | Email   | info@apexquants.com       |
 | Phone   | +91 986-772-4923          |
 

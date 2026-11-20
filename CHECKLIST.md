@@ -268,7 +268,7 @@ Full-width dark section. Left: headline + body copy + contact details | Right: s
 * [ ] Headline: *"Let's Architect Your Next System"*
 * [ ] Body copy: 2 paragraphs from improved copy in Master Prompt
 * [ ] Contact details block:
-  * [ ] Website: `www.apexquants.com` (neon green link)
+  * [ ] Website: `apexquants.com` (neon green link)
   * [ ] Email: `info@apexquants.com` (neon green link, `mailto:`)
   * [ ] Phone: `+91 986-772-4923` (white)
   * [ ] Icons: use Lucide `globe`, `mail`, `phone` (neon green, `1.125rem`)

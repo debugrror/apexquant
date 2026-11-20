@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.apexquants.com',
+  site: 'https://apexquants.com',
   integrations: [tailwind(), sitemap({ filter: (page) => !page.includes('/404') })],
 });
