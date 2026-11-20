@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<!-- Draft — have this reviewed by legal counsel before relying on it. -->
+<BaseLayout
+    title="Privacy Policy | APEX QUANTS LLP"
+    description="How APEX QUANTS LLP handles the personal information you send us."
+>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav />
+    <main id="main">
+        <article class="legal">
+            <span class="font-mono-label legal-eyebrow">◆&nbsp; LEGAL</span>
+            <h1>Privacy Policy</h1>
+            <p class="legal-date">Last updated: 21 November 2026</p>
+
+            <h2>Who we are</h2>
+            <p>
+                APEX QUANTS LLP. You can reach us at
+                <a href="mailto:info@apexquants.com">info@apexquants.com</a> or
+                <a href="tel:+919867724923">+91 98677 24923</a>.
+            </p>
+
+            <h2>What we collect</h2>
+            <p>
+                We collect only what you submit through the contact form (name,
+                company, email address and message) or send us by email or
+                phone. This site has no user accounts and does not use
+                analytics or advertising cookies.
+            </p>
+
+            <h2>How it is processed</h2>
+            <p>
+                Contact form submissions are delivered to us through Formspree
+                (formspree.io), which acts as our processor. See
+                <a
+                    href="https://formspree.io/legal/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer">Formspree's privacy policy</a
+                >.
+            </p>
+
+            <h2>Purpose and retention</h2>
+            <p>
+                We use your details only to respond to your enquiry and any
+                resulting engagement. We do not sell them or share them for
+                marketing. We keep them only as long as needed for that purpose
+                or to meet legal obligations.
+            </p>
+
+            <h2>Your rights</h2>
+            <p>
+                You can ask us to access, correct or delete your data by
+                emailing
+                <a href="mailto:info@apexquants.com">info@apexquants.com</a>.
+                We handle such requests with regard to India's Digital Personal
+                Data Protection Act, 2023.
+            </p>
+
+            <h2>Changes</h2>
+            <p>
+                We may update this page. The date above shows the latest
+                version.
+            </p>
+        </article>
+    </main>
+    <Footer />
+</BaseLayout>
+
+<style>
+    .legal {
+        max-width: 70ch;
+        margin: 0 auto;
+        padding: 9rem 1.5rem 6rem;
+    }
+
+    .legal-eyebrow {
+        display: block;
+        color: var(--accent);
+        margin-bottom: 1rem;
+    }
+
+    .legal h1 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(2.25rem, 5vw, 3.25rem);
+        line-height: 1.1;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+    }
+
+    .legal-date {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: #8a8a8a;
+        margin-bottom: 3rem;
+    }
+
+    .legal h2 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.375rem;
+        color: var(--text-primary);
+        margin: 2.5rem 0 0.75rem;
+    }
+
+    .legal p {
+        font-family: var(--font-body);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+    }
+
+    .legal a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    .legal a:focus-visible {
+        outline: 2px solid #ffffff;
+        outline-offset: 2px;
+    }
+</style>

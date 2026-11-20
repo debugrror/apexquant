@@ -199,63 +199,50 @@ p {
   }
 }
 
-@keyframes statFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* ── Hero Animation Classes ───────────────────────────────────── */
 .anim-nav {
   opacity: 0;
   animation: slideDown 0.6s ease-out 0.1s both;
 }
 
+/* Short sequence: H1 + subheading (LCP) fully visible by ~0.6s */
 .anim-eyebrow {
   opacity: 0;
-  animation: letterSpacingExpand 0.7s ease-out 0.4s both;
+  animation: letterSpacingExpand 0.4s ease-out 0s both;
 }
 
 .anim-h1-line-1 {
   opacity: 0;
-  animation: fadeUp 0.6s ease-out 0.6s both;
+  animation: fadeUp 0.4s ease-out 0.05s both;
 }
 
 .anim-h1-line-2 {
   opacity: 0;
-  animation: fadeUp 0.6s ease-out 0.8s both;
+  animation: fadeUp 0.4s ease-out 0.1s both;
 }
 
 .anim-h1-line-3 {
   opacity: 0;
-  animation: fadeUp 0.6s ease-out 1.0s both;
+  animation: fadeUp 0.4s ease-out 0.15s both;
 }
 
 .anim-subheading {
   opacity: 0;
-  animation: fadeIn 0.6s ease-out 1.2s both;
+  animation: fadeIn 0.4s ease-out 0.2s both;
 }
 
 .anim-cta {
   opacity: 0;
-  animation: scaleIn 0.5s ease-out 1.4s both;
+  animation: scaleIn 0.4s ease-out 0.3s both;
 }
 
 .anim-divider {
-  animation: drawLineRight 0.8s ease-out 1.6s both;
+  animation: drawLineRight 0.6s ease-out 0.35s both;
 }
 
+/* Hero capability strip: CSS-only stagger (per-item animation-delay set inline) */
 .anim-stat {
-  opacity: 0;
-}
-
-.anim-stat.visible {
-  animation: statFadeUp 0.6s ease-out both;
+  animation: fadeUp 0.4s ease-out both;
 }
 
 /* ── Dot Grid Pattern ─────────────────────────────────────────── */
@@ -272,14 +259,48 @@ p {
   z-index: 1;
 }
 
+/* ── Focus ────────────────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Skip Link (element added in layout/nav) ──────────────────── */
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: none;
+}
+
 /* ── Prefers Reduced Motion ───────────────────────────────────── */
+/* Near-zero (not `none`) so JS-triggered entrance animations still land on their visible end state. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
 
@@ -294,14 +315,4 @@ p {
     opacity: 1 !important;
     transform: none !important;
   }
-}
-
-/* ── Page Transition Fade ─────────────────────────────────────── */
-@keyframes pageFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-body {
-  animation: pageFadeIn 0.4s ease-out both;
 }

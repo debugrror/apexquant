@@ -2,13 +2,14 @@
 
 ---
 
-<nav class="nav anim-nav" id="main-nav">
+<header>
+<nav class="nav anim-nav" id="main-nav" aria-label="Main">
     <div class="nav-inner">
         <!-- Logo -->
-        <a href="/" class="nav-logo" aria-label="APEX QUANTS LLP Home">
+        <a href="/" class="nav-logo" aria-label="APEX QUANTS LLP — Home">
             <img
                 src="/images/logo.png"
-                alt="Apex Quants Logo"
+                alt=""
                 class="nav-logo-mark"
                 width="36"
                 height="36"
@@ -18,15 +19,15 @@
 
         <!-- Desktop Links -->
         <div class="nav-links" id="nav-links">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#quant" class="nav-link">Quant</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="/#about" class="nav-link">About</a>
+            <a href="/#services" class="nav-link">Services</a>
+            <a href="/#quant" class="nav-link">Quant</a>
+            <a href="/#contact" class="nav-link">Contact</a>
         </div>
 
         <!-- CTA -->
         <div class="nav-cta-wrap">
-            <a href="#contact" class="nav-cta-btn">Engage Us →</a>
+            <a href="/#contact" class="nav-cta-btn">Engage Us →</a>
         </div>
 
         <!-- Mobile Hamburger -->
@@ -44,13 +45,14 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#about" class="mobile-link">About</a>
-        <a href="#services" class="mobile-link">Services</a>
-        <a href="#quant" class="mobile-link">Quant</a>
-        <a href="#contact" class="mobile-link">Contact</a>
-        <a href="#contact" class="mobile-link mobile-cta-link">Engage Us →</a>
+        <a href="/#about" class="mobile-link">About</a>
+        <a href="/#services" class="mobile-link">Services</a>
+        <a href="/#quant" class="mobile-link">Quant</a>
+        <a href="/#contact" class="mobile-link">Contact</a>
+        <a href="/#contact" class="mobile-link mobile-cta-link">Engage Us →</a>
     </div>
 </nav>
+</header>
 
 <script>
     // --- Scroll-based nav border ---
@@ -73,7 +75,15 @@
     hamburger?.addEventListener("click", () => {
         const isOpen = mobileMenu?.classList.toggle("mobile-menu--open");
         hamburger.classList.toggle("hamburger--open", isOpen);
-        hamburger.setAttribute("aria-expanded", String(isOpen));
+        hamburger.setAttribute("aria-expanded", String(!!isOpen));
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape" || !mobileMenu?.classList.contains("mobile-menu--open")) return;
+        mobileMenu.classList.remove("mobile-menu--open");
+        hamburger?.classList.remove("hamburger--open");
+        hamburger?.setAttribute("aria-expanded", "false");
+        hamburger?.focus();
     });
 
     // Close mobile menu on link click
@@ -186,8 +196,9 @@
         flex-direction: column;
         justify-content: center;
         gap: 5px;
-        width: 32px;
-        height: 32px;
+        align-items: center;
+        width: 44px;
+        height: 44px;
         background: transparent;
         padding: 0;
         cursor: pointer;
@@ -241,6 +252,15 @@
 
     .mobile-link:hover {
         color: var(--accent);
+    }
+
+    .mobile-link.mobile-cta-link,
+    .mobile-link.mobile-cta-link:hover {
+        background: var(--accent);
+        color: #000000;
+        padding: 0.75rem 2rem;
+        font-weight: 700;
+        border-radius: 0;
     }
 
     /* Responsive */

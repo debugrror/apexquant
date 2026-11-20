@@ -10,29 +10,13 @@ import BrandDivider from "./ui/BrandDivider.astro";
                 <a
                     href="/"
                     class="footer-logo-link"
-                    aria-label="Apex Quants LLP Home"
+                    aria-label="APEX QUANTS LLP — Home"
                 >
-                    <svg
-                        class="header-logo-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="var(--accent)"
-                        stroke-width="2.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path d="m3 21 8-18 8 18"></path>
-                        <path d="M5 14h14"></path>
-                        <circle cx="12" cy="6" r="2" fill="var(--accent)"
-                        ></circle>
-                    </svg>
-                    <span class="footer-wordmark">APEX QUANTS LLP</span>
+                    <img src="/images/logo.png" alt="" width="32" height="32" style="object-fit:contain" />
+                    <span class="footer-wordmark brand-name">APEX QUANTS LLP</span>
                 </a>
                 <p class="footer-tagline">
-                    Crafting Code. Engineering Excellence. Elevating Businesses.
+                    Quantitative engineering for capital markets.
                 </p>
             </div>
 
@@ -40,43 +24,36 @@ import BrandDivider from "./ui/BrandDivider.astro";
             <div class="footer-links-grid">
                 <!-- Services -->
                 <div class="footer-col">
-                    <h4 class="footer-heading">Services</h4>
+                    <p class="footer-heading">Services</p>
                     <ul class="footer-list">
-                        <li><a href="#services">Core Technology</a></li>
-                        <li><a href="#quant">Quantitative Engineering</a></li>
-                        <li><a href="#services">AI &amp; ML</a></li>
-                        <li><a href="#services">Cloud &amp; DevOps</a></li>
+                        <li><a href="/#services">Core Technology</a></li>
+                        <li><a href="/#quant">Quantitative Engineering</a></li>
+                        <li><a href="/#services">AI &amp; ML</a></li>
+                        <li><a href="/#services">Cloud &amp; DevOps</a></li>
                     </ul>
                 </div>
 
                 <!-- Company -->
                 <div class="footer-col">
-                    <h4 class="footer-heading">Company</h4>
+                    <p class="footer-heading">Company</p>
                     <ul class="footer-list">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#why-us">Why Us</a></li>
-                        <li><a href="#industries">Industries</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="/#about">About</a></li>
+                        <li><a href="/#why-us">Why Us</a></li>
+                        <li><a href="/#industries">Industries</a></li>
+                        <li><a href="/#contact">Contact</a></li>
                     </ul>
                 </div>
 
                 <!-- Connect -->
                 <div class="footer-col">
-                    <h4 class="footer-heading">Connect</h4>
+                    <p class="footer-heading">Connect</p>
                     <ul class="footer-list">
                         <li>
                             <a href="mailto:info@apexquants.com"
                                 >info@apexquants.com</a>
                         </li>
                         <li>
-                            <span class="footer-text-link"
-                                >+91 986-772-4923</span>
-                        </li>
-                        <li>
-                            <a
-                                href="https://linkedin.com"
-                                target="_blank"
-                                rel="noopener noreferrer">LinkedIn</a>
+                            <a href="tel:+919867724923">+91 98677 24923</a>
                         </li>
                     </ul>
                 </div>
@@ -91,8 +68,13 @@ import BrandDivider from "./ui/BrandDivider.astro";
         <!-- Bottom -->
         <div class="footer-bottom">
             <p class="copyright">
-                &copy; 2025 APEX QUANTS LLP. All Rights Reserved.
+                &copy; {new Date().getFullYear()} APEX QUANTS LLP. All Rights Reserved.
             </p>
+            <p class="disclaimer">
+                APEX QUANTS LLP provides technology and engineering services.
+                Nothing on this site constitutes investment advice.
+            </p>
+            <a href="/privacy/" class="footer-legal-link">Privacy Policy</a>
         </div>
     </div>
 </footer>
@@ -132,11 +114,9 @@ import BrandDivider from "./ui/BrandDivider.astro";
     }
 
     .footer-wordmark {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.25rem;
-        letter-spacing: -0.01em;
-        color: var(--text-primary);
+        font-size: 0.9375rem;
+        color: var(--accent);
+        letter-spacing: 0.05em;
     }
 
     .footer-tagline {
@@ -160,7 +140,7 @@ import BrandDivider from "./ui/BrandDivider.astro";
     }
 
     .footer-heading {
-        font-family: var(--font-display); /* Syne */
+        font-family: var(--font-display); /* Barlow Condensed */
         font-weight: 700;
         font-size: 0.75rem;
         color: var(--accent);
@@ -179,7 +159,7 @@ import BrandDivider from "./ui/BrandDivider.astro";
 
     .footer-list a,
     .footer-text-link {
-        font-family: var(--font-body); /* DM Sans */
+        font-family: var(--font-body); /* Barlow */
         font-size: 0.875rem;
         color: var(--text-primary);
         text-decoration: none;
@@ -199,8 +179,30 @@ import BrandDivider from "./ui/BrandDivider.astro";
     /* ── Footer Bottom ──────────────────────────────────────── */
     .footer-bottom {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
         text-align: center;
+    }
+
+    .disclaimer {
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        line-height: 1.5;
+        color: #8a8a8a;
+        max-width: 60ch;
+    }
+
+    .footer-legal-link {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--text-primary);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    .footer-legal-link:hover {
+        color: var(--accent);
     }
 
     .copyright {

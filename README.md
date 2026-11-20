@@ -1,46 +1,39 @@
-# Astro Starter Kit: Basics
+# APEX QUANTS LLP — Website
+
+Static Astro 5 + Tailwind site for apexquants.com.
+
+## Develop
 
 ```sh
-npm create astro@latest -- --template basics
+npm ci
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Build
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run build
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Static output is written to `dist/`.
 
-## 🧞 Commands
+## Deploy
 
-All commands are run from the root of the project, from a terminal:
+Production is served by nginx from `/var/www/node-apps/apexquants.com/dist` on the company server. To redeploy:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```sh
+sudo -iu node_runner ~/deploy-apexquants.sh
+```
 
-## 👀 Want to learn more?
+The script runs `git pull`, `npm ci`, and the build. Preview builds are deployed on Vercel.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Contact form
+
+The contact form posts to Formspree form `myzdblog` (https://formspree.io/f/myzdblog).
+
+## Project layout
+
+- `src/pages` — routes
+- `src/layouts` — page layouts
+- `src/components` — Astro components
+- `public/` — static assets served as-is (e.g. `public/images/`)

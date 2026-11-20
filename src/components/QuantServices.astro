@@ -24,13 +24,13 @@ const services = [
         num: "04",
         name: "Statistical Arbitrage & Market Neutrality",
         description:
-            "Pairs trading, cointegration strategies, and cross-asset statistical arbitrage. Systems engineered to identify and exploit structural pricing inefficiencies with market-neutral risk exposures.",
+            "Pairs trading, cointegration strategies, and cross-asset statistical arbitrage. Systems that identify and trade structural pricing inefficiencies while holding market-neutral risk exposures.",
     },
     {
         num: "05",
         name: "Portfolio Construction & Risk Modelling",
         description:
-            "Monte Carlo simulation, VaR and CVaR risk attribution, factor decomposition, and drawdown control systems. We quantify risk with institutional-grade rigour across multi-asset portfolios.",
+            "Monte Carlo simulation, VaR and CVaR risk attribution, factor decomposition, and drawdown control systems. Applied consistently across multi-asset portfolios.",
     },
     {
         num: "06",
@@ -49,13 +49,10 @@ const services = [
 
 <section class="quant-services" id="quant">
     <div class="quant-inner">
-        <!-- Decorative section number -->
-        <span class="section-number" aria-hidden="true">03</span>
-
         <!-- Header block -->
         <div class="quant-header anim-quant-header">
             <span class="font-mono-label" style="color: var(--accent);">
-                ◆&nbsp; QUANTITATIVE ENGINEERING
+                ◆&nbsp; 03 — QUANTITATIVE ENGINEERING
             </span>
 
             <h2 class="quant-headline">
@@ -64,29 +61,11 @@ const services = [
 
             <p class="quant-intro">
                 Our Quantitative Engineering practice serves capital market
-                participants who require mathematical rigour, execution
-                precision, and system reliability that commercial platforms
-                cannot provide. We design from first principles — every
-                component purpose-built for the performance envelope of
-                professional trading.
+                participants who need mathematical rigour, execution
+                precision, and system reliability beyond what off-the-shelf
+                platforms provide. Each component is designed for the latency,
+                throughput, and failure modes of professional trading.
             </p>
-        </div>
-
-        <!-- Full-bleed terminal visual band -->
-        <div class="quant-visual-band anim-quant-visual" aria-hidden="true">
-            <div class="terminal-grid">
-                <!-- Animated waveform bars — CSS only -->
-                {
-                    Array.from({ length: 60 }).map((_, i) => (
-                        <div
-                            class="bar"
-                            style={`--i: ${i}; --h: ${20 + Math.sin(i * 0.4) * 30 + Math.random() * 25}%;`}
-                        />
-                    ))
-                }
-            </div>
-            <!-- Scanline overlay -->
-            <div class="scanline-overlay"></div>
         </div>
 
         <!-- Numbered service list -->
@@ -95,7 +74,7 @@ const services = [
                 services.map((service, i) => (
                     <div
                         class="quant-item anim-quant-item"
-                        style={`animation-delay: ${0.1 * i}s;`}
+                        style={`transition-delay: ${0.1 * i}s;`}
                     >
                         <div class="quant-item-left">
                             <span class="quant-num">{service.num}.</span>
@@ -117,7 +96,7 @@ const services = [
     const quantSection = document.getElementById("quant");
     if (quantSection) {
         const targets = quantSection.querySelectorAll(
-            ".anim-quant-header, .anim-quant-visual, .anim-quant-item",
+            ".anim-quant-header, .anim-quant-item",
         );
 
         const observer = new IntersectionObserver(
@@ -149,22 +128,6 @@ const services = [
         margin: 0 auto;
     }
 
-    /* ── Decorative section number ──────────────────────────── */
-    .section-number {
-        position: absolute;
-        top: -1.5rem;
-        left: -0.5rem;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(6rem, 12vw, 10rem);
-        color: #1a1a1a;
-        line-height: 1;
-        letter-spacing: -0.04em;
-        pointer-events: none;
-        user-select: none;
-        z-index: 0;
-    }
-
     /* ── Header block ───────────────────────────────────────── */
     .quant-header {
         position: relative;
@@ -190,70 +153,6 @@ const services = [
         font-size: 1.0625rem;
         line-height: 1.7;
         max-width: 700px;
-    }
-
-    /* ── Terminal visual band ───────────────────────────────── */
-    .quant-visual-band {
-        position: relative;
-        width: calc(100% + 3rem);
-        margin-left: -1.5rem;
-        height: 120px;
-        background: #050505;
-        border-top: 1px solid rgba(168, 255, 0, 0.15);
-        border-bottom: 1px solid rgba(168, 255, 0, 0.15);
-        margin-bottom: 3rem;
-        overflow: hidden;
-    }
-
-    .terminal-grid {
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        gap: 3px;
-        height: 100%;
-        padding: 12px 2rem;
-    }
-
-    .bar {
-        flex: 1;
-        max-width: 12px;
-        height: var(--h);
-        background: linear-gradient(
-            to top,
-            rgba(168, 255, 0, 0.6) 0%,
-            rgba(168, 255, 0, 0.15) 100%
-        );
-        border-radius: 1px 1px 0 0;
-        animation: barPulse 3s ease-in-out calc(var(--i) * 0.05s) infinite
-            alternate;
-    }
-
-    @keyframes barPulse {
-        0% {
-            opacity: 0.5;
-            transform: scaleY(1);
-        }
-        50% {
-            opacity: 0.9;
-            transform: scaleY(1.15);
-        }
-        100% {
-            opacity: 0.5;
-            transform: scaleY(0.85);
-        }
-    }
-
-    .scanline-overlay {
-        position: absolute;
-        inset: 0;
-        background: repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent 2px,
-            rgba(0, 0, 0, 0.15) 2px,
-            rgba(0, 0, 0, 0.15) 4px
-        );
-        pointer-events: none;
     }
 
     /* ── Numbered service list ──────────────────────────────── */
@@ -318,11 +217,6 @@ const services = [
             transform 0.7s ease-out;
     }
 
-    .anim-quant-visual {
-        opacity: 0;
-        transition: opacity 0.8s ease-out 0.2s;
-    }
-
     .anim-quant-item {
         opacity: 0;
         transform: translateX(-30px);
@@ -334,10 +228,6 @@ const services = [
     .anim-quant-header.visible {
         opacity: 1;
         transform: translateY(0);
-    }
-
-    .anim-quant-visual.visible {
-        opacity: 1;
     }
 
     .anim-quant-item.visible {
@@ -360,32 +250,15 @@ const services = [
             font-size: clamp(2rem, 10vw, 2.5rem);
             min-width: 3rem;
         }
-
-        .quant-visual-band {
-            height: 80px;
-            width: calc(100% + 2.5rem);
-            margin-left: -1.25rem;
-        }
-
-        .section-number {
-            font-size: clamp(4rem, 20vw, 6rem);
-            top: -1rem;
-            left: -0.25rem;
-        }
     }
 
     /* ── Prefers reduced motion ─────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
         .anim-quant-header,
-        .anim-quant-visual,
         .anim-quant-item {
             opacity: 1 !important;
             transform: none !important;
             transition: none !important;
-        }
-
-        .bar {
-            animation: none !important;
         }
     }
 </style>

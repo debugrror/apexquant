@@ -1,51 +1,45 @@
 ---
 import { Image } from "astro:assets";
 import BrandDivider from "./ui/BrandDivider.astro";
+import aboutBg from "../assets/about-bg.jpg";
 ---
 
 <section class="about" id="about">
     <div class="about-inner">
-        <!-- Decorative section number -->
-        <span class="section-number" aria-hidden="true">01</span>
-
         <!-- Two-column grid -->
         <div class="about-grid">
             <!-- Left column: Copy -->
             <div class="about-copy anim-about-text">
                 <!-- Eyebrow label -->
                 <span class="font-mono-label" style="color: var(--accent);">
-                    ◆&nbsp; ABOUT THE FIRM
+                    ◆&nbsp; 01 — ABOUT THE FIRM
                 </span>
 
                 <!-- Headline -->
                 <h2 class="about-headline">
                     Built at the Intersection of Quantitative Finance and
-                    Engineering Excellence
+                    Software Engineering
                 </h2>
 
                 <!-- Body — 3 paragraphs (EEAT-optimised copy from PROMPT.md) -->
                 <div class="about-body">
                     <p>
-                        <span class="brand-name">APEX QUANTS LLP</span> is a specialist
-                        quantitative engineering firm. We design and deliver the systems
-                        that institutional traders, fintech operators, and enterprise
-                        technology teams depend on — where microseconds matter, where
-                        capital is at stake, and where failure is not an option.
+                        <span class="brand-name">APEX QUANTS LLP</span> is a
+                        quantitative engineering firm. We design and build
+                        trading, risk, and data systems for hedge funds,
+                        proprietary trading desks, fintech companies, and
+                        enterprise technology teams — systems where latency,
+                        correctness, and uptime carry a direct cost.
                     </p>
                     <p>
-                        Founded by engineers and quantitative researchers with
-                        deep expertise in capital markets infrastructure, we
-                        work at a level of technical rigour that generalist
-                        agencies cannot match. We don't just write code — we
-                        architect systems with the mathematical precision and
-                        performance characteristics that high-frequency trading
-                        and large-scale financial platforms demand.
+                        We work across the full stack — from execution and
+                        market-data infrastructure to research tooling and risk
+                        models — so the mathematics and the engineering are
+                        designed together rather than handed off.
                     </p>
                     <p>
-                        Our firm partners with hedge funds, proprietary trading
-                        desks, fintech startups, and enterprise organisations
-                        seeking to build or modernise their digital and
-                        quantitative infrastructure.
+                        Engagements range from new builds to the modernisation
+                        of existing digital and quantitative infrastructure.
                     </p>
                 </div>
             </div>
@@ -54,11 +48,12 @@ import BrandDivider from "./ui/BrandDivider.astro";
             <div class="about-visual anim-about-visual">
                 <div class="about-image-wrapper">
                     <Image
-                        src="/images/about-bg.png"
+                        src={aboutBg}
+                        format="webp"
+                        widths={[400, 600]}
+                        sizes="(max-width: 768px) 100vw, 500px"
                         alt="Abstract precision engineering visualization with geometric grid structures and neon green luminescence"
                         loading="lazy"
-                        width="600"
-                        height="600"
                     />
                     <!-- Subtle glow overlay -->
                     <div class="about-image-glow" aria-hidden="true"></div>
@@ -97,7 +92,7 @@ import BrandDivider from "./ui/BrandDivider.astro";
 <style>
     .about {
         position: relative;
-        padding: 7rem 1.5rem 0;
+        padding: 5rem 1.5rem 0;
         background: var(--bg-primary);
         overflow: hidden;
     }
@@ -106,22 +101,6 @@ import BrandDivider from "./ui/BrandDivider.astro";
         position: relative;
         max-width: 1200px;
         margin: 0 auto;
-    }
-
-    /* ── Decorative section number ──────────────────────────── */
-    .section-number {
-        position: absolute;
-        top: -1.5rem;
-        left: -0.5rem;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(6rem, 12vw, 10rem);
-        color: #1a1a1a;
-        line-height: 1;
-        letter-spacing: -0.04em;
-        pointer-events: none;
-        user-select: none;
-        z-index: 0;
     }
 
     /* ── Two-column grid ────────────────────────────────────── */
@@ -250,12 +229,6 @@ import BrandDivider from "./ui/BrandDivider.astro";
 
         .about-copy {
             order: 1;
-        }
-
-        .section-number {
-            font-size: clamp(4rem, 20vw, 6rem);
-            top: -1rem;
-            left: -0.25rem;
         }
 
         .about-image-wrapper {

@@ -4,29 +4,23 @@ import BrandDivider from "./ui/BrandDivider.astro";
 
 <section class="why-us" id="why-us">
     <div class="why-us-inner">
-        <!-- Decorative section number -->
-        <span class="section-number" aria-hidden="true">04</span>
-
         <!-- Header -->
         <div class="why-us-header anim-why-header">
             <span class="font-mono-label" style="color: var(--accent);">
-                ◆&nbsp; WHY APEX QUANTS
+                ◆&nbsp; 04 — WHY APEX QUANTS
             </span>
 
             <h2 class="why-us-headline">
-                Why Leading Firms Choose <span class="brand-name"
+                Why Firms Choose <span class="brand-name"
                     >APEX QUANTS LLP</span
                 >
             </h2>
-
-            <!-- Subtle glow accent dot -->
-            <div class="glow-dot" aria-hidden="true"></div>
         </div>
 
         <!-- 2×2 Pillars Grid -->
         <div class="pillars-grid">
             <!-- Pillar 1 — Quant-Native Expertise -->
-            <div class="pillar anim-pillar" style="animation-delay: 0s;">
+            <div class="pillar anim-pillar" style="transition-delay: 0s;">
                 <div class="pillar-icon" aria-hidden="true">
                     <!-- Brain / Neural icon -->
                     <svg
@@ -50,15 +44,16 @@ import BrandDivider from "./ui/BrandDivider.astro";
                 </div>
                 <h3 class="pillar-heading">Quant-Native Expertise</h3>
                 <p class="pillar-body">
-                    Our team thinks in volatility surfaces and execution
-                    shortfall before writing a single line of code. This
-                    domain-depth means we identify edge cases and system
-                    requirements that technology generalists miss entirely.
+                    We approach a system through its market mechanics —
+                    volatility surfaces, execution shortfall, order-book
+                    behaviour — before writing code. That domain depth surfaces
+                    edge cases and requirements that generalist teams tend to
+                    miss.
                 </p>
             </div>
 
             <!-- Pillar 2 — Security-First Architecture -->
-            <div class="pillar anim-pillar" style="animation-delay: 0.1s;">
+            <div class="pillar anim-pillar" style="transition-delay: 0.1s;">
                 <div class="pillar-icon" aria-hidden="true">
                     <!-- Shield-check icon -->
                     <svg
@@ -87,7 +82,7 @@ import BrandDivider from "./ui/BrandDivider.astro";
             </div>
 
             <!-- Pillar 3 — Cloud-Native Scalability -->
-            <div class="pillar anim-pillar" style="animation-delay: 0.2s;">
+            <div class="pillar anim-pillar" style="transition-delay: 0.2s;">
                 <div class="pillar-icon" aria-hidden="true">
                     <!-- Server / Scale icon -->
                     <svg
@@ -111,15 +106,15 @@ import BrandDivider from "./ui/BrandDivider.astro";
                 </div>
                 <h3 class="pillar-heading">Cloud-Native Scalability</h3>
                 <p class="pillar-body">
-                    We architect for the order of magnitude beyond your current
-                    requirement. Systems built on auto-scaling infrastructure
-                    with observability baked in — so growth never becomes an
-                    emergency.
+                    We size systems for an order of magnitude beyond current
+                    requirements, on auto-scaling infrastructure with
+                    observability built in — so growth is planned for rather
+                    than reacted to.
                 </p>
             </div>
 
             <!-- Pillar 4 — Automation-Driven Efficiency -->
-            <div class="pillar anim-pillar" style="animation-delay: 0.3s;">
+            <div class="pillar anim-pillar" style="transition-delay: 0.3s;">
                 <div class="pillar-icon" aria-hidden="true">
                     <!-- Workflow / Automation icon -->
                     <svg
@@ -142,8 +137,8 @@ import BrandDivider from "./ui/BrandDivider.astro";
                 <p class="pillar-body">
                     From CI/CD pipelines to AI agent workflows, we
                     systematically identify and eliminate manual operational
-                    overhead — compounding engineering velocity over the
-                    lifetime of the engagement.
+                    overhead, so the time saved accrues over the life of the
+                    engagement.
                 </p>
             </div>
         </div>
@@ -190,22 +185,6 @@ import BrandDivider from "./ui/BrandDivider.astro";
         margin: 0 auto;
     }
 
-    /* ── Decorative section number ──────────────────────────── */
-    .section-number {
-        position: absolute;
-        top: -1.5rem;
-        left: -0.5rem;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(6rem, 12vw, 10rem);
-        color: #1a1a1a;
-        line-height: 1;
-        letter-spacing: -0.04em;
-        pointer-events: none;
-        user-select: none;
-        z-index: 0;
-    }
-
     /* ── Header ─────────────────────────────────────────────── */
     .why-us-header {
         position: relative;
@@ -226,24 +205,12 @@ import BrandDivider from "./ui/BrandDivider.astro";
         color: var(--text-primary);
     }
 
+    /* Override global .brand-name (body font + wide tracking) inside the heading */
     .why-us-headline .brand-name {
-        font-size: inherit;
-        color: var(--text-primary);
-    }
-
-    /* Subtle neon green glow dot near heading */
-    .glow-dot {
-        position: absolute;
-        top: 0.5rem;
-        left: -1.5rem;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow:
-            0 0 8px rgba(168, 255, 0, 0.6),
-            0 0 20px rgba(168, 255, 0, 0.3),
-            0 0 40px rgba(168, 255, 0, 0.15);
+        font: inherit;
+        letter-spacing: inherit;
+        color: inherit;
+        white-space: nowrap;
     }
 
     /* ── 2×2 Pillars Grid ───────────────────────────────────── */
@@ -322,16 +289,6 @@ import BrandDivider from "./ui/BrandDivider.astro";
         .pillars-grid {
             grid-template-columns: 1fr;
             gap: 2.5rem;
-        }
-
-        .section-number {
-            font-size: clamp(4rem, 20vw, 6rem);
-            top: -1rem;
-            left: -0.25rem;
-        }
-
-        .glow-dot {
-            display: none;
         }
 
         .why-us-header {

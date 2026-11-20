@@ -71,12 +71,12 @@ Think: the mechanical precision of a trading terminal, the visual authority of i
 
 ```css
 /* Load these via Google Fonts or Fontsource */
---font-display: 'Syne', sans-serif;      /* Headings — geometric, technical, premium feel */
---font-body:    'DM Sans', sans-serif;   /* Body — clean, readable, modern */
+--font-display: 'Barlow Condensed', sans-serif;      /* Headings — condensed, technical, premium feel */
+--font-body:    'Barlow', sans-serif;   /* Body — clean, readable, modern */
 --font-mono:    'JetBrains Mono', monospace; /* Code snippets, ticker values, stat labels */
 ```
 
-**Why Syne:** Geometric, slightly unconventional — feels engineered, not corporate. It will set Apex apart from every competitor using Inter or Manrope.
+**Why Barlow Condensed:** Condensed, technical, high-impact — feels engineered, not corporate. It will set Apex apart from every competitor using Inter or Manrope.
 
 **Scale:**
 
@@ -133,7 +133,7 @@ Build in this order across separate sessions:
 ### Navigation (`Nav.astro`)
 
 ```
-Left:   [Logo mark SVG] + "APEX QUANTS LLP" wordmark (all caps, Syne 900, neon green)
+Left:   [Logo mark SVG] + "APEX QUANTS LLP" wordmark (all caps, Barlow Condensed 900, neon green)
 Center: Subtle links — About | Services | Quant | Contact
 Right:  CTA Button — "Engage Us →" (black text on neon green bg, sharp corners 0px radius)
 ```
@@ -141,7 +141,7 @@ Right:  CTA Button — "Engage Us →" (black text on neon green bg, sharp corne
 * Nav is `position: fixed`, `backdrop-filter: blur(20px)`, background `rgba(0,0,0,0.85)`
 * On scroll past 50px: add a `1px solid #1A1A1A` bottom border
 * Mobile: hamburger → slide-down menu, same dark glass style
-* Nav links: white, `0.875rem`, Syne SemiBold, hover → neon green with `0.2s ease`
+* Nav links: white, `0.875rem`, Barlow Condensed SemiBold, hover → neon green with `0.2s ease`
 * Zero border-radius on CTA button (this is on-brand — precise, not friendly)
 
 ### Hero Background
@@ -213,7 +213,7 @@ Place below a brand divider `——— ✦ ———` (neon green line, white as
 
 * Number counters animate from 0 → final value over `1.8s` with `ease-out`
 * Each stat card fades up with `50px` translate-Y, stagger `0.15s` between each
-* Stat values: `Syne 900`, `clamp(2rem, 4vw, 3rem)`, neon green
+* Stat values: `Barlow Condensed 900`, `clamp(2rem, 4vw, 3rem)`, neon green
 * Stat labels: `JetBrains Mono`, `0.75rem`, uppercase, `#CCCCCC`
 
 ### Full Hero Animation Sequence (on page load)
@@ -419,7 +419,7 @@ From CI/CD pipelines to AI agent workflows, we systematically identify and elimi
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 ```
 
 ### SEO Meta (BaseLayout.astro)

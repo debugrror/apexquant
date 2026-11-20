@@ -1,5 +1,5 @@
 {
-  "name": "super-sphere",
+  "name": "apex-quants-site",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,7 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "@astrojs/sitemap": "^3.7.6",
+    "astro": "^5.17.1",
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",

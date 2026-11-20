@@ -47,11 +47,11 @@ The PDF uses a bold, geometric sans-serif family throughout. The closest system-
 
 | Element           | Recommended Font          | Weight      | Style     |
 |-------------------|---------------------------|-------------|-----------|
-| Brand Name / Logo | Montserrat / Futura       | 900 (Black) | Uppercase |
-| Section Headings  | Montserrat / Futura       | 700 (Bold)  | Title Case |
-| Taglines          | Montserrat / Inter        | 700 (Bold)  | Sentence case |
-| Body Copy         | Inter / Open Sans         | 400 (Regular) | Sentence case |
-| Labels / Accents  | Montserrat / Inter        | 600 (SemiBold) | Uppercase or Title |
+| Brand Name / Logo | Barlow Condensed          | 900 (Black) | Uppercase |
+| Section Headings  | Barlow Condensed          | 700 (Bold)  | Title Case |
+| Taglines          | Barlow Condensed / Barlow | 700 (Bold)  | Sentence case |
+| Body Copy         | Barlow                    | 400 (Regular) | Sentence case |
+| Labels / Accents  | JetBrains Mono            | 600 (SemiBold) | Uppercase or Title |
 
 ### Typography Rules
 - The brand name "APEX QUANTS LLP" must **always appear in ALL CAPS**.

@@ -135,9 +135,9 @@ Heading block (full width) → 2×3 or 3×2 grid of service cards on desktop, 1-
   * [ ] `05` — Portfolio Construction & Risk Modelling
   * [ ] `06` — Execution Algorithms
   * [ ] `07` — Market Analysis & Forecasting
-* [ ] Number: `Syne 900`, very large (`4rem`), neon green, low opacity (`0.4`) — decorative
-* [ ] Service name: `Syne 700`, white, `1.25rem`
-* [ ] Description: `DM Sans`, `#CCCCCC`, `1rem`
+* [ ] Number: `Barlow Condensed 900`, very large (`4rem`), neon green, low opacity (`0.4`) — decorative
+* [ ] Service name: `Barlow Condensed 700`, white, `1.25rem`
+* [ ] Description: `Barlow`, `#CCCCCC`, `1rem`
 * [ ] Thin neon green horizontal rule between each item
 * [ ] Antigravity image (full-width or right-aligned): *"dark financial market data visualization, candlestick chart patterns and algorithmic waveforms as glowing green lines on pure black, terminal aesthetic, cinematic lighting, no text"* — place as a full-bleed band either above or below the list
 * [ ] Scroll-triggered: each row slides in from left, staggered 0.1s
@@ -172,7 +172,7 @@ This section **must** use the technical quant terms: TWAP, VWAP, VaR, CVaR, Mont
   * [ ] Security-First Architecture
   * [ ] Cloud-Native Scalability
   * [ ] Automation-Driven Efficiency
-* [ ] Each pillar: icon (large, `3rem`, neon green) + heading (white, Syne 700) + body (`#CCCCCC`, DM Sans)
+* [ ] Each pillar: icon (large, `3rem`, neon green) + heading (white, Barlow Condensed 700) + body (`#CCCCCC`, Barlow)
 * [ ] Background: `#0D0D0D` (slight lift from pure black — visual breathing room)
 * [ ] No card borders — whitespace is the separator
 * [ ] Subtle neon green glow dot/accent near section heading
@@ -206,7 +206,7 @@ Horizontal scrolling tag/badge row OR a simple 3-col icon + label grid. Keep thi
   * [ ] Crypto & Digital Asset Platforms
   * [ ] Enterprise Financial Institutions
   * [ ] Quantitative Research Labs
-* [ ] Each tile: small relevant icon (neon green) + label (white, Syne SemiBold)
+* [ ] Each tile: small relevant icon (neon green) + label (white, Barlow Condensed SemiBold)
 * [ ] Tile style: `border: 1px solid #2A2A2A`, `background: transparent`, `padding: 1.25rem 1.75rem`
 * [ ] Hover: border → neon green, background → `#0D0D0D`
 * [ ] Fade-in animation on scroll
@@ -233,7 +233,7 @@ Top: 2–3 testimonial quotes (large quote mark, italic, author info below) | Bo
 * [ ] Headline: *"Trusted by Operators Who Cannot Afford to Be Wrong"*
 * [ ] 2–3 testimonial cards (use placeholder copy from Master Prompt until real quotes available):
   * [ ] Large neon green quotation mark `"` as decorative element
-  * [ ] Quote text: white, italic, `DM Sans`, `1.125rem`
+  * [ ] Quote text: white, italic, `Barlow`, `1.125rem`
   * [ ] Author: neon green name + white title/firm, `JetBrains Mono` for firm name
   * [ ] Card: `border-left: 3px solid #A8FF00` (the brand's signature left-border treatment)
   * [ ] Background: `#0D0D0D`
@@ -301,10 +301,10 @@ Full-width dark section. Left: headline + body copy + contact details | Right: s
   * [ ] **Services:** Core Technology | Quantitative Engineering | AI & ML | Cloud & DevOps
   * [ ] **Company:** About | Why Us | Industries | Contact
   * [ ] **Connect:** `info@apexquants.com` | `+91 986-772-4923` | LinkedIn (if applicable)
-* [ ] Column headings: `Syne 700`, neon green, small caps, `0.75rem`
-* [ ] Links: white, `DM Sans`, `0.875rem`, hover → neon green
+* [ ] Column headings: `Barlow Condensed 700`, neon green, small caps, `0.75rem`
+* [ ] Links: white, `Barlow`, `0.875rem`, hover → neon green
 * [ ] Brand divider `——— ✦ ———` above copyright line
-* [ ] Copyright: `© 2025 APEX QUANTS LLP. All Rights Reserved.` (`#CCCCCC`, mono, `0.75rem`)
+* [ ] Copyright: `© <current year> APEX QUANTS LLP. All Rights Reserved.` (year rendered dynamically, not hard-coded) (`#CCCCCC`, mono, `0.75rem`)
 * [ ] Background: `#050505` (very slightly lighter than pure black for visual separation)
 * [ ] Responsive: 3-col → 1-col stack, logo centered on mobile
 
